@@ -5,10 +5,15 @@
     <groupId>com.king</groupId>
     <artifactId>urban</artifactId>
     <version>${revision}</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>urban</name>
     <description>城市综合管理服务平台</description>
+
+
+    <modules>
+        <module>common</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -58,6 +63,13 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>common</artifactId>
+                <version>${revision}</version>
+
+            </dependency>
 
             <dependency>
                 <groupId>eu.bitwalker</groupId>
