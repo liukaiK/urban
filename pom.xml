@@ -13,6 +13,9 @@
 
     <modules>
         <module>common</module>
+        <module>test</module>
+        <module>log</module>
+        <module>core</module>
     </modules>
 
     <parent>
@@ -66,9 +69,26 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>common</artifactId>
-                <version>${revision}</version>
+                <artifactId>urban-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>urban-test</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.king</groupId>
+                <artifactId>urban-log</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.king</groupId>
+                <artifactId>urban-core</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
