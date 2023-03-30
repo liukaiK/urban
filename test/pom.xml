@@ -11,6 +11,6 @@
 
     <artifactId>urban-test</artifactId>
 
-    <name>urban-test ${project.version}</name>
+    <name>urban-test</name>
 
 </project>

@@ -5,10 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = SysConstants.BASE_PACKAGE)
-public class Urban {
+public class MainApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Urban.class, args);
+        SpringApplication.run(MainApplication.class, args);
     }
 
 }
