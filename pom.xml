@@ -17,6 +17,7 @@
         <module>log</module>
         <module>core</module>
         <module>main</module>
+        <module>workflow</module>
     </modules>
 
     <parent>
@@ -45,7 +46,7 @@
         <userAgentUtils.version>1.21</userAgentUtils.version>
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
         <fastdfs-client.version>1.27.2</fastdfs-client.version>
-        <activiti.version>5.22.0</activiti.version>
+        <flowable.version>6.6.0</flowable.version>
         <hutool.version>5.7.4</hutool.version>
         <jts.version>1.16.0</jts.version>
         <lombok.version>1.18.16</lombok.version>
@@ -58,7 +59,6 @@
         <hibernate-jpamodelgen.version>5.6.9.Final</hibernate-jpamodelgen.version>
         <captcha.version>1.3.0</captcha.version>
         <os-maven-plugin.version>1.7.0</os-maven-plugin.version>
-        <druid-spring-boot-starter.version>1.2.9</druid-spring-boot-starter.version>
         <nimbus-jose-jwt.version>9.22</nimbus-jose-jwt.version>
         <guava.version>27.0-jre</guava.version>
         <jpush.version>3.6.6</jpush.version>
@@ -81,20 +81,26 @@
             </dependency>
 
             <dependency>
-                <groupId>com.king</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>urban-log</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.king</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>urban-main</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.king</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>urban-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>urban-workflow</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -133,6 +139,7 @@
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.anji-plus</groupId>
                 <artifactId>spring-boot-starter-captcha</artifactId>
@@ -167,6 +174,12 @@
                 <groupId>org.geotools.jdbc</groupId>
                 <artifactId>gt-jdbc-mysql</artifactId>
                 <version>${geotools.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-engine</artifactId>
+                <version>${flowable.version}</version>
             </dependency>
 
         </dependencies>

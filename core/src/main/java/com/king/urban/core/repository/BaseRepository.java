@@ -8,5 +8,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  * @author liukai
  */
 @NoRepositoryBean
-public interface CustomizeRepository<T, ID> extends JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
+public interface BaseRepository<T, ID> extends JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
 }
