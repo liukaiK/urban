@@ -1,4 +1,4 @@
-package com.unicom.urban.management.core.configurer.jpa;
+package com.king.urban.common.id;
 
 import cn.hutool.core.util.IdUtil;
 import org.hibernate.HibernateException;
