@@ -34,4 +34,12 @@ public class Employee extends DeletableEntity<Long> {
     @Embedded
     private Password password;
 
+    public void updateUsername(Username username) {
+        this.username = username;
+    }
+
+    public void updateName(Name name) {
+        this.name = name;
+    }
+
 }
