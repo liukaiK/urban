@@ -1,6 +1,6 @@
-package com.king.urban.core.repository;
+package com.king.urban.common.repository;
 
-import com.king.urban.core.entity.DeletableEntity;
+import com.king.urban.common.entity.DeletableEntity;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;

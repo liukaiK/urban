@@ -1,4 +1,4 @@
-package com.king.urban.core.repository;
+package com.king.urban.common.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

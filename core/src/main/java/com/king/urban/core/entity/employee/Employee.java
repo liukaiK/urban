@@ -1,7 +1,7 @@
 package com.king.urban.core.entity.employee;
 
 import com.king.urban.common.constant.SysConstants;
-import com.king.urban.core.entity.DeletableEntity;
+import com.king.urban.common.entity.DeletableEntity;
 import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -34,6 +34,8 @@ public class Employee extends DeletableEntity<Long> {
     @Embedded
     private Password password;
 
+    private String mobilePhone;
+
     public void updateUsername(Username username) {
         this.username = username;
     }
@@ -41,5 +43,15 @@ public class Employee extends DeletableEntity<Long> {
     public void updateName(Name name) {
         this.name = name;
     }
+
+    public void updatePassword(Password password) {
+        this.password = password;
+    }
+
+    public void updateMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+
 
 }

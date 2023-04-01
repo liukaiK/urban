@@ -78,9 +78,9 @@ public class Result {
     /**
      * 快速创建成功结果
      */
-    public static Result success() {
-        return success(null);
-    }
+//    public static Result success() {
+//        return success(null);
+//    }
 
     /**
      * 系统异常类没有返回数据

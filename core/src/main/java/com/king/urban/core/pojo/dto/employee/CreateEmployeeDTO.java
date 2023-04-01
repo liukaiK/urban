@@ -3,7 +3,7 @@ package com.king.urban.core.pojo.dto.employee;
 import lombok.Data;
 
 @Data
-public class SaveEmployeeDTO {
+public class CreateEmployeeDTO {
 
     private String name;
 
