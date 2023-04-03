@@ -2,14 +2,13 @@ package com.king.urban.core.entity.employee;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
+import com.king.urban.core.entity.dept.Dept;
 import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Entity
@@ -34,7 +33,17 @@ public class Employee extends DeletableEntity<Long> {
     @Embedded
     private Password password;
 
+    /**
+     * 手机号码
+     */
     private String mobilePhone;
+
+    /**
+     * 部门
+     */
+    @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Dept dept;
 
     public void updateUsername(Username username) {
         this.username = username;
@@ -52,6 +61,9 @@ public class Employee extends DeletableEntity<Long> {
         this.mobilePhone = mobilePhone;
     }
 
+    public void updateDept(Dept dept) {
+        this.dept = dept;
+    }
 
 
 }
