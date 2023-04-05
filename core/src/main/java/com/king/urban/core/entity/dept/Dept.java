@@ -29,4 +29,17 @@ public class Dept extends DeletableEntity<Long> {
     private Dept parent;
 
 
+    public Dept() {
+
+    }
+
+    public Dept(Long deptId) {
+        this.id = deptId;
+    }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+
 }

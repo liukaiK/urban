@@ -1,7 +1,7 @@
 package com.king.urban.core.entity.employee;
 
 
-import org.springframework.util.StringUtils;
+import com.king.urban.common.util.StringUtils;
 
 import javax.persistence.Embeddable;
 
@@ -27,7 +27,7 @@ public class Username {
     }
 
     protected void setUsername(String username) {
-        if (StringUtils.isEmpty(username)) {
+        if (StringUtils.hasText(username)) {
             throw new IllegalArgumentException("username cannot be null");
         }
         this.username = username;

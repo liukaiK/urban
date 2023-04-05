@@ -1,6 +1,7 @@
 package com.king.urban.core.service.employee;
 
 import com.king.urban.common.util.StringUtils;
+import com.king.urban.core.entity.dept.Dept;
 import com.king.urban.core.entity.employee.*;
 import com.king.urban.core.mapstruct.EmployeeMapper;
 import com.king.urban.core.pojo.dto.employee.CreateEmployeeDTO;
@@ -40,7 +41,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             if (StringUtils.isNotEmpty(searchEmployeeDTO.getUsername())) {
                 predicates.add(criteriaBuilder.equal(root.get(Employee_.username), new Username(searchEmployeeDTO.getUsername())));
             }
-
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
         Page<Employee> page = employeeRepository.findAll(specification, pageable);
@@ -55,7 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void create(CreateEmployeeDTO employeeDTO) {
         String username = employeeDTO.getUsername();
 
-        if (employeeRepository.existsByUsername(new Username(username))) {
+        if (existsByUsername(new Username(username))) {
             log.warn("新增账号失败 因为账号:{}已经存在", username);
         }
 
@@ -64,16 +64,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.updateUsername(new Username(username));
         employee.updatePassword(new Password("123456"));
         employee.updateMobilePhone("13384614120");
+        employee.updateDept(new Dept(employeeDTO.getDeptId()));
         employeeRepository.save(employee);
     }
 
     @Override
     public void update(UpdateEmployeeDTO updateEmployeeDTO) {
         employeeRepository.findById(updateEmployeeDTO.getId()).ifPresent(employee -> {
-            if (StringUtils.isNotEmpty(updateEmployeeDTO.getName())) {
-                employee.updateName(new Name(updateEmployeeDTO.getName()));
-            }
+            employee.updateName(new Name(updateEmployeeDTO.getName()));
+            employee.updateDept(new Dept(updateEmployeeDTO.getDeptId()));
         });
+    }
+
+    @Override
+    public boolean existsByUsername(Username username) {
+        return employeeRepository.existsByUsername(username);
     }
 
 }

@@ -18,6 +18,8 @@ import javax.persistence.*;
 @Table(name = "t_sys_employee")
 public class Employee extends DeletableEntity<Long> {
 
+    public static final Long adminId = 1L;
+
     /**
      * 姓名
      */
@@ -65,5 +67,19 @@ public class Employee extends DeletableEntity<Long> {
         this.dept = dept;
     }
 
+    /**
+     * 获取加密之后的密码
+     */
+    public String getEncodedPassword() {
+        return this.getPassword().getPassword();
+    }
+
+    public String getUsername() {
+        return this.username.getUsername();
+    }
+
+    public String getName() {
+        return this.name.getName();
+    }
 
 }

@@ -11,5 +11,7 @@ public class UpdateEmployeeDTO {
 
     private String username;
 
+    private Long deptId;
+
 
 }

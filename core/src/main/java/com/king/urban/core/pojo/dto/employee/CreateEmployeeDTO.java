@@ -9,5 +9,7 @@ public class CreateEmployeeDTO {
 
     private String username;
 
+    private Long deptId;
+
 
 }

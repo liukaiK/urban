@@ -15,7 +15,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.king</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>urban-core</artifactId>
         </dependency>
         <dependency>
