@@ -13,8 +13,8 @@ public class JpaStatementInspector implements StatementInspector {
 
     @Override
     public String inspect(String sql) {
-        System.out.println(sql);
-        log.info(sql);
+//        System.out.println(sql);
+//        log.info(sql);
         return sql;
     }
 

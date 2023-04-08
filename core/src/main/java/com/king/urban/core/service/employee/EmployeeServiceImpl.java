@@ -1,23 +1,29 @@
 package com.king.urban.core.service.employee;
 
+import cn.hutool.core.convert.Convert;
 import com.king.urban.common.util.StringUtils;
+import com.king.urban.core.converter.EmployeeConverter;
 import com.king.urban.core.entity.dept.Dept;
 import com.king.urban.core.entity.employee.*;
-import com.king.urban.core.mapstruct.EmployeeMapper;
 import com.king.urban.core.pojo.dto.employee.CreateEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.SearchEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.UpdateEmployeeDTO;
+import com.king.urban.core.pojo.vo.employee.EmployeeVO;
 import com.king.urban.core.repository.employee.EmployeeRepository;
+import com.king.urban.core.repository.post.PostRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -29,12 +35,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
     @Autowired
-    private EmployeeMapper employeeMapper;
+    private PostRepository postRepository;
+
+    @Autowired
+    private EmployeeConverter employeeConverter;
 
     @Override
-    public void search(SearchEmployeeDTO searchEmployeeDTO, Pageable pageable) {
+    public Page<EmployeeVO> search(SearchEmployeeDTO searchEmployeeDTO, Pageable pageable) {
         Specification<Employee> specification = (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
+            root.fetch(Employee_.dept, JoinType.LEFT);
             if (StringUtils.isNotEmpty(searchEmployeeDTO.getName())) {
                 predicates.add(criteriaBuilder.like(root.get(Employee_.name).get(Name_.name), "%" + searchEmployeeDTO.getName() + "%"));
             }
@@ -43,12 +53,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
-        Page<Employee> page = employeeRepository.findAll(specification, pageable);
-
-//        return PageUtil.of()
-
-//        List<UserVO> userVOList = UserMapper.INSTANCE.convert(page);
-//        return new PageImpl<>(userVOList, page.getPageable(), page.getTotalElements());
+        Page<Employee> queryResult = employeeRepository.findAll(specification, pageable);
+        return new PageImpl<>(employeeConverter.convert(queryResult), queryResult.getPageable(), queryResult.getTotalElements());
     }
 
     @Override
@@ -62,9 +68,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
         employee.updateName(new Name(employeeDTO.getName()));
         employee.updateUsername(new Username(username));
-        employee.updatePassword(new Password("123456"));
-        employee.updateMobilePhone("13384614120");
+        employee.updatePassword(new Password(employeeDTO.getPassword()));
+        employee.updateMobilePhone(employeeDTO.getMobilePhone());
         employee.updateDept(new Dept(employeeDTO.getDeptId()));
+        employee.updatePosts(postRepository.findAllById(Arrays.asList(Convert.toLongArray(employeeDTO.getPostIds().split(",")))));
         employeeRepository.save(employee);
     }
 
@@ -74,6 +81,17 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.updateName(new Name(updateEmployeeDTO.getName()));
             employee.updateDept(new Dept(updateEmployeeDTO.getDeptId()));
         });
+    }
+
+    @Override
+    public void remove(String ids) {
+        for (Long employeeId : Convert.toLongArray(ids.split(","))) {
+            if (Employee.adminId.equals(employeeId)) {
+                throw new IllegalArgumentException("超级管理员不允许删除");
+            }
+        }
+
+        employeeRepository.softDeleteAllById(Arrays.asList(Convert.toLongArray(ids.split(","))));
     }
 
     @Override

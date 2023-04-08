@@ -3,12 +3,14 @@ package com.king.urban.core.entity.employee;
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
 import com.king.urban.core.entity.dept.Dept;
+import com.king.urban.core.entity.post.Post;
 import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Getter
 @Entity
@@ -44,8 +46,15 @@ public class Employee extends DeletableEntity<Long> {
      * 部门
      */
     @JoinColumn
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Dept dept;
+
+    /**
+     * 一个员工可以有多个岗位
+     */
+    @JoinColumn(name = "id")
+    @OneToMany(fetch = FetchType.LAZY)
+    private Collection<Post> posts;
 
     public void updateUsername(Username username) {
         this.username = username;
@@ -80,6 +89,10 @@ public class Employee extends DeletableEntity<Long> {
 
     public String getName() {
         return this.name.getName();
+    }
+
+    public void updatePosts(Collection<Post> posts) {
+        this.posts = posts;
     }
 
 }

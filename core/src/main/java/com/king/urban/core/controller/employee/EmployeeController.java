@@ -4,8 +4,10 @@ import com.king.urban.common.Result;
 import com.king.urban.core.pojo.dto.employee.CreateEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.SearchEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.UpdateEmployeeDTO;
+import com.king.urban.core.pojo.vo.employee.EmployeeVO;
 import com.king.urban.core.service.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +26,8 @@ public class EmployeeController {
 
     @GetMapping("/seaarch")
     public Result search(SearchEmployeeDTO searchEmployeeDTO, @PageableDefault Pageable pageable) {
-        employeeService.search(searchEmployeeDTO, pageable);
-        return null;
+        Page<EmployeeVO> page = employeeService.search(searchEmployeeDTO, pageable);
+        return Result.success(page);
     }
 
     @PostMapping("/create")

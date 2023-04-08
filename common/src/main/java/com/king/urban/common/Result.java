@@ -71,16 +71,16 @@ public class Result {
     /**
      * 快速创建成功结果并返回结果数据
      */
-//    public static Result success(Object data) {
-//        return new Result(ErrorCodeEnum.SUCCESS.getCode(), ErrorCodeEnum.SUCCESS.getMessage(), data);
-//    }
+    public static Result success(Object data) {
+        return new Result(0, "成功", data);
+    }
 
     /**
      * 快速创建成功结果
      */
-//    public static Result success() {
-//        return success(null);
-//    }
+    public static Result success() {
+        return success(null);
+    }
 
     /**
      * 系统异常类没有返回数据
@@ -115,7 +115,6 @@ public class Result {
 //    public static Result fail(ErrorCodeEnum errorCodeEnum) {
 //        return new Result(errorCodeEnum.getCode(), errorCodeEnum.getMessage());
 //    }
-
     public static Result fail(Integer code, String message) {
         return new Result(code, message);
     }

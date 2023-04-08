@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 @Data
 public class EmployeeVO {
@@ -13,6 +14,12 @@ public class EmployeeVO {
     private String name;
 
     private String username;
+
+    private String deptId;
+
+    private String deptName;
+
+    private Collection<PostVO> posts;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;

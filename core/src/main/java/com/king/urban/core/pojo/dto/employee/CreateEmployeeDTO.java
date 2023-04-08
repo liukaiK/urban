@@ -9,7 +9,15 @@ public class CreateEmployeeDTO {
 
     private String username;
 
+    private String password;
+
     private Long deptId;
 
+    private String mobilePhone;
+
+    /**
+     * 岗位id 逗号拼接
+     */
+    private String postIds;
 
 }
