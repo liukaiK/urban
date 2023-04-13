@@ -2,6 +2,7 @@ package com.king.urban.core.controller.employee;
 
 import com.king.urban.common.Result;
 import com.king.urban.core.pojo.dto.employee.CreateEmployeeDTO;
+import com.king.urban.core.pojo.dto.employee.RemoveEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.SearchEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.UpdateEmployeeDTO;
 import com.king.urban.core.pojo.vo.employee.EmployeeVO;
@@ -31,14 +32,21 @@ public class EmployeeController {
     }
 
     @PostMapping("/create")
-    public void create(@RequestBody CreateEmployeeDTO createEmployeeDTO) {
+    public Result create(@RequestBody CreateEmployeeDTO createEmployeeDTO) {
         employeeService.create(createEmployeeDTO);
+        return Result.success();
     }
 
     @PostMapping("/update")
-    public void update(@RequestBody UpdateEmployeeDTO updateEmployeeDTO) {
+    public Result update(@RequestBody UpdateEmployeeDTO updateEmployeeDTO) {
         employeeService.update(updateEmployeeDTO);
+        return Result.success();
     }
 
+    @PostMapping("/remove")
+    public Result remove(@RequestBody RemoveEmployeeDTO removeEmployeeDTO) {
+        employeeService.remove(removeEmployeeDTO);
+        return Result.success();
+    }
 
 }

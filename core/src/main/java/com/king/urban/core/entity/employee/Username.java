@@ -28,9 +28,11 @@ public class Username {
 
     protected void setUsername(String username) {
         if (StringUtils.hasText(username)) {
-            throw new IllegalArgumentException("username cannot be null");
+            this.username = username;
+            return;
         }
-        this.username = username;
+        throw new IllegalArgumentException("username cannot be null");
+
     }
 
 }

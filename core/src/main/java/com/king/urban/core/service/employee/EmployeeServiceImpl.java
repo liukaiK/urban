@@ -6,6 +6,7 @@ import com.king.urban.core.converter.EmployeeConverter;
 import com.king.urban.core.entity.dept.Dept;
 import com.king.urban.core.entity.employee.*;
 import com.king.urban.core.pojo.dto.employee.CreateEmployeeDTO;
+import com.king.urban.core.pojo.dto.employee.RemoveEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.SearchEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.UpdateEmployeeDTO;
 import com.king.urban.core.pojo.vo.employee.EmployeeVO;
@@ -84,14 +85,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void remove(String ids) {
-        for (Long employeeId : Convert.toLongArray(ids.split(","))) {
+    public void remove(RemoveEmployeeDTO removeEmployeeDTO) {
+        for (Long employeeId : Convert.toLongArray(removeEmployeeDTO.getIds().split(","))) {
             if (Employee.adminId.equals(employeeId)) {
                 throw new IllegalArgumentException("超级管理员不允许删除");
             }
         }
 
-        employeeRepository.softDeleteAllById(Arrays.asList(Convert.toLongArray(ids.split(","))));
+        employeeRepository.softDeleteAllById(Arrays.asList(Convert.toLongArray(removeEmployeeDTO.getIds().split(","))));
     }
 
     @Override

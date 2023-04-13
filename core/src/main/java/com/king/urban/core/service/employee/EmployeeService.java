@@ -2,6 +2,7 @@ package com.king.urban.core.service.employee;
 
 import com.king.urban.core.entity.employee.Username;
 import com.king.urban.core.pojo.dto.employee.CreateEmployeeDTO;
+import com.king.urban.core.pojo.dto.employee.RemoveEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.SearchEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.UpdateEmployeeDTO;
 import com.king.urban.core.pojo.vo.employee.EmployeeVO;
@@ -16,7 +17,7 @@ public interface EmployeeService {
 
     void update(UpdateEmployeeDTO updateEmployeeDTO);
 
-    void remove(String ids);
+    void remove(RemoveEmployeeDTO removeEmployeeDTO);
 
     boolean existsByUsername(Username username);
 
