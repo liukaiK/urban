@@ -12,8 +12,8 @@ import java.util.Map;
  */
 public enum Source {
 
-    SUPERVISOR(0, "监督员上报"),
-    HOT_LINE(1, "热线上报"),
+    GRID_ADMIN(0, "网格员上报"),
+    TELEPHONE(1, "热线上报"),
     PUBLIC(2, "公众上报"),
     SMALL(3, "微采集"),
     VIDEO_ALARM(4, "视频智能识别");

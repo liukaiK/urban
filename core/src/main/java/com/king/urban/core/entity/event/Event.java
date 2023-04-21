@@ -50,4 +50,11 @@ public class Event extends DeletableEntity<Long> {
      */
     private String processInstanceId;
 
+    public Event() {
+    }
+
+    public Event(Source source) {
+        this.source = source;
+    }
+
 }

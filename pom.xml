@@ -51,16 +51,11 @@
         <hutool.version>5.7.4</hutool.version>
         <jts.version>1.16.0</jts.version>
         <lombok.version>1.18.16</lombok.version>
-        <jjwt.version>0.11.2</jjwt.version>
         <poi.version>4.1.2</poi.version>
-        <flying-saucer.version>9.1.5</flying-saucer.version>
-        <itextpdf.version>5.5.10</itextpdf.version>
-        <xmlworker.version>5.5.11</xmlworker.version>
         <hibernate-spatial.version>5.4.23.Final</hibernate-spatial.version>
         <hibernate-jpamodelgen.version>5.6.9.Final</hibernate-jpamodelgen.version>
         <captcha.version>1.3.0</captcha.version>
         <os-maven-plugin.version>1.7.0</os-maven-plugin.version>
-        <nimbus-jose-jwt.version>9.22</nimbus-jose-jwt.version>
         <guava.version>27.0-jre</guava.version>
         <jpush.version>3.6.6</jpush.version>
         <geotools.version>28.2</geotools.version>
