@@ -2,7 +2,7 @@ package com.king.urban.workflow.complete;
 
 import java.util.List;
 
-public interface CompleteService {
+public interface WorkflowCompleteService {
 
 
     void finish(String taskId, String buttonId, String comment);

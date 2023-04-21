@@ -1,4 +1,4 @@
-package com.king.urban.core.controller.employee;
+package com.king.urban.core.controller.sys.employee;
 
 import com.king.urban.common.Result;
 import com.king.urban.core.pojo.dto.employee.CreateEmployeeDTO;

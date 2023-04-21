@@ -1,4 +1,4 @@
-package com.king.urban.core.controller.dept;
+package com.king.urban.core.controller.sys.dept;
 
 import com.king.urban.common.Result;
 import com.king.urban.core.pojo.dto.dept.CreateDeptDTO;

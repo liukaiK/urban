@@ -1,4 +1,4 @@
-package com.king.urban.core.controller.post;
+package com.king.urban.core.controller.sys.post;
 
 import com.king.urban.common.Result;
 import com.king.urban.core.pojo.dto.post.CreatePostDTO;

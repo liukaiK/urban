@@ -1,4 +1,4 @@
-package com.king.urban.core.controller.login;
+package com.king.urban.core.controller.sys.login;
 
 import cn.dev33.satoken.stp.StpUtil;
 import com.king.urban.common.Result;
