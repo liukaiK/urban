@@ -19,6 +19,7 @@
         <module>main</module>
         <module>workflow</module>
         <module>grid</module>
+        <module>component</module>
     </modules>
 
     <parent>
