@@ -1,4 +1,4 @@
-package com.king.component.entity;
+package com.king.urban.component.entity;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;

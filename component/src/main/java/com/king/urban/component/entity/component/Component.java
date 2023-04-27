@@ -1,4 +1,4 @@
-package com.king.component.entity.component;
+package com.king.urban.component.entity.component;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
@@ -30,6 +30,36 @@ public class Component extends DeletableEntity<Long> {
     private String code;
 
     private String name;
+
+    /**
+     * 主管部门编码
+     */
+    private String mainDeptCode;
+
+    /**
+     * 主管部门名称
+     */
+    private String mainDeptName;
+
+    /**
+     * 权属部门名称
+     */
+    private String ownerDeptName;
+
+    /**
+     * 权属部门编码
+     */
+    private String ownerDeptCode;
+
+    /**
+     * 养护部门名称
+     */
+    private String keepDeptName;
+
+    /**
+     * 养护部门编码
+     */
+    private String keepDeptCode;
 
     /**
      * 形状

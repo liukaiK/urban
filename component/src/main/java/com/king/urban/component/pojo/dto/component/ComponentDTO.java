@@ -1,4 +1,4 @@
-package com.king.component.pojo.dto.component;
+package com.king.urban.component.pojo.dto.component;
 
 import lombok.Data;
 

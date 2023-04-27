@@ -109,6 +109,11 @@
             </dependency>
 
             <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>urban-component</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>eu.bitwalker</groupId>
                 <artifactId>UserAgentUtils</artifactId>
                 <version>${userAgentUtils.version}</version>

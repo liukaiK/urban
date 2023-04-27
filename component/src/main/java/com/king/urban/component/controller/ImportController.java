@@ -1,4 +1,4 @@
-package com.king.component.controller;
+package com.king.urban.component.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
