@@ -20,6 +20,7 @@
         <module>workflow</module>
         <module>grid</module>
         <module>component</module>
+        <module>file</module>
     </modules>
 
     <parent>
@@ -113,6 +114,13 @@
                 <artifactId>urban-component</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>urban-file</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>eu.bitwalker</groupId>
                 <artifactId>UserAgentUtils</artifactId>
