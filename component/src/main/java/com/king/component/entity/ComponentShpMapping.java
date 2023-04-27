@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * 部件
+ * 部件shp文件里的属性 和数据库列关系映射表
  *
  * @author liukai
  */
@@ -20,13 +20,21 @@ import javax.persistence.Table;
 @DynamicInsert
 @DynamicUpdate
 @Where(clause = SysConstants.WHERE_DELETE)
-@Table(name = "t_com_component")
-public class Component extends DeletableEntity<Long> {
-
+@Table(name = "t_com_com_shp_mapping")
+public class ComponentShpMapping extends DeletableEntity<Long> {
 
     /**
-     * 部件图片
+     * 数据库列名
      */
-    private String picUrl;
+    private String columnName;
+
+    /**
+     * shp字段属性
+     */
+    private String fieldName;
+
+    public void updateFieldName(String fieldName) {
+        this.fieldName = fieldName;
+    }
 
 }
