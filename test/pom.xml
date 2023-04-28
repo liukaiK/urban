@@ -16,6 +16,7 @@
 
     <modules>
         <module>core-test</module>
+        <module>component-test</module>
     </modules>
 
     <dependencies>
