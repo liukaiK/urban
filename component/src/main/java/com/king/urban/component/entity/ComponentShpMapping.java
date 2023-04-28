@@ -31,10 +31,10 @@ public class ComponentShpMapping extends DeletableEntity<Long> {
     /**
      * shp字段属性
      */
-    private String fieldName;
+    private String attributeName;
 
-    public void updateFieldName(String fieldName) {
-        this.fieldName = fieldName;
+    public void updateAttributeName(String attributeName) {
+        this.attributeName = attributeName;
     }
 
 }

@@ -21,6 +21,7 @@
         <module>grid</module>
         <module>component</module>
         <module>file</module>
+        <module>test/component-test</module>
     </modules>
 
     <parent>

@@ -31,6 +31,8 @@ public class Component extends DeletableEntity<Long> {
 
     private String name;
 
+    private String source;
+
     /**
      * 主管部门编码
      */
@@ -91,4 +93,60 @@ public class Component extends DeletableEntity<Long> {
      */
     private String material;
 
+    public void updateCode(String code) {
+        this.code = code;
+    }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void updateSource(String source) {
+        this.source = source;
+    }
+
+    public void updateForm(String form) {
+        this.form = form;
+    }
+
+    public void updateLocate(String locate) {
+        this.locate = locate;
+    }
+
+    public void updateMainDeptCode(String mainDeptCode) {
+        this.mainDeptCode = mainDeptCode;
+    }
+
+    public void updateMainDeptName(String mainDeptName) {
+        this.mainDeptName = mainDeptName;
+    }
+
+    public void updateOwnerDeptName(String ownerDeptName) {
+        this.ownerDeptName = ownerDeptName;
+    }
+
+    public void updateOwnerDeptCode(String ownerDeptCode) {
+        this.ownerDeptCode = ownerDeptCode;
+    }
+
+    public void updateKeepDeptName(String keepDeptName) {
+        this.keepDeptName = keepDeptName;
+    }
+
+    public void updateKeepDeptCode(String keepDeptCode) {
+        this.keepDeptCode = keepDeptCode;
+    }
+
+
+    public void updateState(String state) {
+        this.state = state;
+    }
+
+    public void updateMaterial(String material) {
+        this.material = material;
+    }
+
+    public void updatePoint(Point point) {
+        this.point = point;
+    }
 }
