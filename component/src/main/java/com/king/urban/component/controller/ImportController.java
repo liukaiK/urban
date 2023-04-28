@@ -61,30 +61,33 @@ public class ImportController {
                 shpFiles.add(newFile);
             }
         }
-
         for (File shpFile : shpFiles) {
-            ShapefileDataStore fileDataStore = new ShapefileDataStore(shpFile.toURI().toURL());
-            fileDataStore.setCharset(Charset.forName(charset));
-            String[] typeNames = fileDataStore.getTypeNames();
-
-            if (ArrayUtil.isNotEmpty(typeNames)) {
-                List<ComponentDTO> componentDTOs = new ArrayList<>();
-                Map<String, String> mapping = mappingService.findAll();
-                try (FeatureIterator<SimpleFeature> simpleFeatureIterator = getFeatures(fileDataStore, typeNames)) {
-                    while (simpleFeatureIterator.hasNext()) {
-                        SimpleFeature simpleFeature = simpleFeatureIterator.next();
-                        if (simpleFeature.getDefaultGeometryProperty().getValue() instanceof Point) {
-                            ComponentDTO componentDTO = buildComponentDTO(mapping, simpleFeature);
-                            componentDTOs.add(componentDTO);
-                        } else {
-                            log.warn("{} 不是点数据 无法导入到数据库中", typeNames);
-                        }
-                    }
-                }
-                componentService.create(componentDTOs);
-            }
+            saveToDatabase(charset, shpFile);
         }
         return Result.success();
+    }
+
+    private void saveToDatabase(String charset, File shpFile) throws IOException {
+        ShapefileDataStore fileDataStore = new ShapefileDataStore(shpFile.toURI().toURL());
+        fileDataStore.setCharset(Charset.forName(charset));
+        String[] typeNames = fileDataStore.getTypeNames();
+
+        if (ArrayUtil.isNotEmpty(typeNames)) {
+            List<ComponentDTO> componentDTOs = new ArrayList<>();
+            Map<String, String> mapping = mappingService.findAll();
+            try (FeatureIterator<SimpleFeature> simpleFeatureIterator = getFeatures(fileDataStore, typeNames)) {
+                while (simpleFeatureIterator.hasNext()) {
+                    SimpleFeature simpleFeature = simpleFeatureIterator.next();
+                    if (simpleFeature.getDefaultGeometryProperty().getValue() instanceof Point) {
+                        ComponentDTO componentDTO = buildComponentDTO(mapping, simpleFeature);
+                        componentDTOs.add(componentDTO);
+                    } else {
+                        log.warn("{} 不是点数据 无法导入到数据库中", typeNames);
+                    }
+                }
+            }
+            componentService.create(componentDTOs);
+        }
     }
 
 
