@@ -2,8 +2,11 @@ package com.king.urban.component.service.component;
 
 import com.king.urban.component.entity.component.Component;
 import com.king.urban.component.pojo.dto.component.ComponentDTO;
+import com.king.urban.component.pojo.vo.ComponentVO;
 import com.king.urban.component.repository.ComponentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +19,13 @@ public class ComponentServiceImpl implements ComponentService {
     @Autowired
     private ComponentRepository componentRepository;
 
+
+    @Override
+    public Page<ComponentVO> search(Pageable pageable) {
+        Page<Component> page = componentRepository.findAll(pageable);
+
+        return null;
+    }
 
     @Override
     public void create(ComponentDTO componentDTO) {

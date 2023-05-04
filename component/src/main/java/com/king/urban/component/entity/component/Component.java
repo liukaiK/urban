@@ -2,14 +2,14 @@ package com.king.urban.component.entity.component;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
+import com.king.urban.grid.entity.CellGrid;
 import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 import org.locationtech.jts.geom.Point;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * 部件
@@ -32,6 +32,10 @@ public class Component extends DeletableEntity<Long> {
     private String name;
 
     private String source;
+
+    @JoinColumn
+    @ManyToOne(fetch = FetchType.EAGER)
+    private CellGrid cellGrid;
 
     /**
      * 主管部门编码
