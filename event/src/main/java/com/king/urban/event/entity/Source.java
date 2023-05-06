@@ -1,4 +1,4 @@
-package com.king.urban.core.entity.event;
+package com.king.urban.event.entity;
 
 
 import javax.persistence.AttributeConverter;

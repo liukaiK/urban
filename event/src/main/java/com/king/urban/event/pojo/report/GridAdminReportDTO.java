@@ -1,4 +1,4 @@
-package com.king.urban.core.pojo.dto.event.report;
+package com.king.urban.event.pojo.report;
 
 public class GridAdminReportDTO implements ReportDTO {
 }

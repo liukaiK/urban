@@ -11,6 +11,8 @@ import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 
+import static javax.persistence.ConstraintMode.NO_CONSTRAINT;
+
 /**
  * 部件
  *
@@ -33,7 +35,7 @@ public class Component extends DeletableEntity<Long> {
 
     private String source;
 
-    @JoinColumn
+    @JoinColumn(foreignKey = @ForeignKey(NO_CONSTRAINT))
     @ManyToOne(fetch = FetchType.EAGER)
     private CellGrid cellGrid;
 

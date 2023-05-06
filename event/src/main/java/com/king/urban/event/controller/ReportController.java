@@ -1,9 +1,9 @@
-package com.king.urban.core.controller.event.report;
+package com.king.urban.event.controller;
 
 import com.king.urban.common.Result;
-import com.king.urban.core.pojo.dto.event.report.GridAdminReportDTO;
-import com.king.urban.core.pojo.dto.event.report.TelephoneReportDTO;
-import com.king.urban.core.service.event.report.ReportService;
+import com.king.urban.event.pojo.report.GridAdminReportDTO;
+import com.king.urban.event.pojo.report.TelephoneReportDTO;
+import com.king.urban.event.service.report.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

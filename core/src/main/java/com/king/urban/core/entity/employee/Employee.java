@@ -52,8 +52,8 @@ public class Employee extends DeletableEntity<Long> {
     /**
      * 一个员工可以有多个岗位
      */
-    @JoinColumn(name = "id")
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "t_sys_employee_post", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
     private Collection<Post> posts;
 
     public void updateUsername(Username username) {

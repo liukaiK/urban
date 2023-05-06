@@ -1,4 +1,4 @@
-package com.king.urban.core.service.event.claim;
+package com.king.urban.event.service.claim;
 
 import com.king.urban.core.entity.event.Event;
 import com.king.urban.workflow.claim.WorkflowClaimService;

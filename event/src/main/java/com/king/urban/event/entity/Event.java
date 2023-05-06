@@ -9,16 +9,21 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Entity
 @DynamicInsert
 @DynamicUpdate
 @Where(clause = SysConstants.WHERE_DELETE)
-@Table(name = "t_sys_employee")
+@Table(name = "t_eve_event")
 public class Event extends DeletableEntity<Long> {
+
+    /**
+     * 案件来源
+     */
+    @Convert(converter = Source.Converter.class)
+    private Source source;
 
     /**
      * 案件编码
@@ -26,12 +31,14 @@ public class Event extends DeletableEntity<Long> {
     private String code;
 
     /**
-     * 流程实例ID
+     * 案件发生所在的责任网格
      */
-    private String processInstanceId;
-
+    @JoinColumn
+    @ManyToOne(fetch = FetchType.EAGER)
     private DutyGrid dutyGrid;
 
+    @JoinColumn
+    @ManyToOne(fetch = FetchType.EAGER)
     private CellGrid cellGrid;
 
     /**
@@ -39,4 +46,20 @@ public class Event extends DeletableEntity<Long> {
      */
     private String address;
 
+
+    private String taskId;
+
+    private String taskName;
+
+    /**
+     * 流程实例ID
+     */
+    private String processInstanceId;
+
+    protected Event() {
+    }
+
+    public Event(Source source) {
+        this.source = source;
+    }
 }

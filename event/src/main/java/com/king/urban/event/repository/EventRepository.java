@@ -1,8 +1,8 @@
-package com.king.urban.core.repository.event;
+package com.king.urban.event.repository;
 
 import com.king.urban.common.repository.BaseRepository;
 import com.king.urban.common.repository.DeletableRepository;
-import com.king.urban.core.entity.event.Event;
+import com.king.urban.event.entity.Event;
 import org.springframework.stereotype.Repository;
 
 @Repository
