@@ -35,4 +35,8 @@ public class Username {
 
     }
 
+    @Override
+    public String toString() {
+        return this.username;
+    }
 }

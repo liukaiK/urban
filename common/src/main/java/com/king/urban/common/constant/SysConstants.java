@@ -12,4 +12,6 @@ public class SysConstants {
 
     public static final String WHERE_DELETE = DELETED_FILED + "=" + DELETED_VALUE;
 
+    public static final String SESSION_CURRENT_PRINCIPAL = "current_principal";
+
 }

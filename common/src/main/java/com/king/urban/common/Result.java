@@ -16,7 +16,7 @@ public class Result {
     /**
      * 处理结果code
      */
-    private Integer code;
+    private String code;
 
     /**
      * 处理结果描述信息
@@ -52,7 +52,7 @@ public class Result {
     /**
      * 内部使用，用于构造成功的结果
      */
-    public Result(Integer code, String message, Object data) {
+    public Result(String code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;
@@ -62,7 +62,7 @@ public class Result {
     /**
      * 内部使用，用于构造成功的结果
      */
-    public Result(Integer code, String message) {
+    public Result(String code, String message) {
         this.code = code;
         this.message = message;
         this.time = LocalDateTime.now();
@@ -72,7 +72,7 @@ public class Result {
      * 快速创建成功结果并返回结果数据
      */
     public static Result success(Object data) {
-        return new Result(0, "成功", data);
+        return new Result("00000", "成功", data);
     }
 
     /**
@@ -115,7 +115,7 @@ public class Result {
 //    public static Result fail(ErrorCodeEnum errorCodeEnum) {
 //        return new Result(errorCodeEnum.getCode(), errorCodeEnum.getMessage());
 //    }
-    public static Result fail(Integer code, String message) {
+    public static Result fail(String code, String message) {
         return new Result(code, message);
     }
 
@@ -143,7 +143,7 @@ public class Result {
 //    public static Result error(String message) {
 //        return new Result(SystemErrorType.SYSTEM_ERROR, message);
 //    }
-    public Integer getCode() {
+    public String getCode() {
         return code;
     }
 
