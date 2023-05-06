@@ -16,7 +16,7 @@ spring:
         session_factory:
           statement_inspector: com.king.urban.core.jpa.JpaStatementInspector
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
   redis:
     database: 0
     host: 127.0.0.1

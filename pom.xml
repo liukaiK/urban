@@ -21,6 +21,8 @@
         <module>grid</module>
         <module>component</module>
         <module>file</module>
+        <module>event</module>
+        <module>gis</module>
     </modules>
 
     <parent>
@@ -119,6 +121,18 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>urban-file</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>urban-event</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>urban-gis</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
