@@ -10,4 +10,14 @@ public class WorkflowClaimServiceImpl implements WorkflowClaimService {
     @Autowired
     private TaskService taskService;
 
+    @Override
+    public void claim(String taskId, String userId) {
+        taskService.claim(taskId, userId);
+    }
+
+    @Override
+    public void unClaim(String taskId) {
+        taskService.unclaim(taskId);
+    }
+
 }

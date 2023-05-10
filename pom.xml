@@ -13,7 +13,6 @@
 
     <modules>
         <module>common</module>
-        <module>test</module>
         <module>log</module>
         <module>core</module>
         <module>main</module>
@@ -53,7 +52,6 @@
         <fastdfs-client.version>1.27.2</fastdfs-client.version>
         <flowable.version>6.6.0</flowable.version>
         <hutool.version>5.8.11</hutool.version>
-        <jts.version>1.16.0</jts.version>
         <lombok.version>1.18.16</lombok.version>
         <poi.version>4.1.2</poi.version>
         <hibernate-spatial.version>5.4.23.Final</hibernate-spatial.version>
@@ -73,12 +71,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>urban-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>urban-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -212,12 +204,6 @@
                 <groupId>org.geotools.jdbc</groupId>
                 <artifactId>gt-jdbc-mysql</artifactId>
                 <version>${geotools.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.locationtech.jts</groupId>
-                <artifactId>jts-core</artifactId>
-                <version>${jts.version}</version>
             </dependency>
 
             <dependency>
