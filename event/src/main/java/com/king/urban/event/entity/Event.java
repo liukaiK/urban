@@ -42,6 +42,11 @@ public class Event extends DeletableEntity<Long> {
     private CellGrid cellGrid;
 
     /**
+     * 冗余字段
+     */
+    private String cellGridName;
+
+    /**
      * 案件发生地址
      */
     private String address;
@@ -61,5 +66,9 @@ public class Event extends DeletableEntity<Long> {
 
     public Event(Source source) {
         this.source = source;
+    }
+
+    public void updateAddress(String address) {
+        this.address = address;
     }
 }
