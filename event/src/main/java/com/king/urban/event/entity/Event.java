@@ -46,11 +46,9 @@ public class Event extends DeletableEntity<Long> {
      */
     private String cellGridName;
 
-    /**
-     * 案件发生地址
-     */
-    private String address;
 
+    @Embedded
+    private Position position;
 
     private String taskId;
 
@@ -68,7 +66,8 @@ public class Event extends DeletableEntity<Long> {
         this.source = source;
     }
 
-    public void updateAddress(String address) {
-        this.address = address;
+    public void updatePosition(Position position) {
+        this.position = position;
     }
+
 }
