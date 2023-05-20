@@ -29,6 +29,7 @@ public class ReportControllerTest extends BaseTest {
     @Test
     public void telephoneReportTest() throws Exception {
         StpUtil.login(1);
+
         MockHttpServletResponse response = mockMvc.perform(post("/event/report/telephone")
                         .queryParam("id", "1")
                         .queryParam("create_time", "2023-01-01")

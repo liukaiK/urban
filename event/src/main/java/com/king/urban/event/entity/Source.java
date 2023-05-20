@@ -23,7 +23,7 @@ public enum Source {
         this.value = value;
     }
 
-    private static final Map<Integer, Source> sources = new HashMap<>(6);
+    private static final Map<Integer, Source> map = new HashMap<>(6);
 
     private final Integer key;
     private final String value;
@@ -37,7 +37,7 @@ public enum Source {
     }
 
     public static Source get(Integer key) {
-        Source source = sources.get(key);
+        Source source = map.get(key);
         if (source == null) {
             throw new IllegalArgumentException("source key cannot be null");
         }
@@ -46,7 +46,7 @@ public enum Source {
 
     static {
         for (Source source : values()) {
-            sources.put(source.getKey(), source);
+            map.put(source.getKey(), source);
         }
     }
 

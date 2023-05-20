@@ -1,7 +1,7 @@
-package com.king.urban.component.service.mapping;
+package com.king.urban.gis.service;
 
-import com.king.urban.component.entity.ComponentShpMapping;
-import com.king.urban.component.repository.ComponentShpRepository;
+import com.king.urban.gis.entity.ShpMapping;
+import com.king.urban.gis.repository.ShpMappingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +13,13 @@ import java.util.Map;
 public class MappingServiceImpl implements MappingService {
 
     @Autowired
-    private ComponentShpRepository componentShpRepository;
+    private ShpMappingRepository shpMappingRepository;
 
     @Override
     public Map<String, String> findAll() {
-        List<ComponentShpMapping> componentShpMappings = componentShpRepository.findAll();
+        List<ShpMapping> componentShpMappings = shpMappingRepository.findAll();
         Map<String, String> mapping = new HashMap<>();
-        for (ComponentShpMapping componentShpMapping : componentShpMappings) {
+        for (ShpMapping componentShpMapping : componentShpMappings) {
             mapping.put(componentShpMapping.getColumnName(), componentShpMapping.getAttributeName());
         }
         return mapping;

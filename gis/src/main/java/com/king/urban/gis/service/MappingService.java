@@ -1,4 +1,4 @@
-package com.king.urban.component.service.mapping;
+package com.king.urban.gis.service;
 
 import java.util.Map;
 

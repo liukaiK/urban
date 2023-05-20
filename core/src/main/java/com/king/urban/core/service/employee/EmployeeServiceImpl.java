@@ -13,6 +13,8 @@ import com.king.urban.core.pojo.vo.employee.EmployeeVO;
 import com.king.urban.core.repository.employee.EmployeeRepository;
 import com.king.urban.core.repository.post.PostRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.SessionFactory;
+import org.hibernate.stat.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -34,6 +36,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private SessionFactory sessionFactory;
 
     @Autowired
     private PostRepository postRepository;
@@ -60,6 +65,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void create(CreateEmployeeDTO employeeDTO) {
+        Statistics statistics = sessionFactory.getStatistics();
+
+
         String username = employeeDTO.getUsername();
 
         if (existsByUsername(new Username(username))) {

@@ -1,11 +1,11 @@
-package com.king.urban.component.controller;
+package com.king.urban.gis.controller;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ArrayUtil;
 import com.king.urban.common.Result;
 import com.king.urban.component.pojo.dto.component.ComponentDTO;
 import com.king.urban.component.service.component.ComponentService;
-import com.king.urban.component.service.mapping.MappingService;
+import com.king.urban.gis.service.MappingService;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.data.simple.SimpleFeatureSource;

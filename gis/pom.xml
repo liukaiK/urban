@@ -17,6 +17,10 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>urban-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>urban-component</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
