@@ -1,10 +1,11 @@
-package com.king.urban.gis.controller;
+package com.king.urban.gis.controller.impor;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ArrayUtil;
 import com.king.urban.common.Result;
 import com.king.urban.component.pojo.dto.component.ComponentDTO;
 import com.king.urban.component.service.component.ComponentService;
+import com.king.urban.gis.entity.mapping.Type;
 import com.king.urban.gis.service.MappingService;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.simple.SimpleFeatureIterator;
@@ -35,9 +36,9 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/component")
-public class ImportController {
+public class ComponentImportController {
 
-    private static final Logger log = LoggerFactory.getLogger(ImportController.class);
+    private static final Logger log = LoggerFactory.getLogger(ComponentImportController.class);
 
     @Autowired
     private MappingService mappingService;
@@ -74,7 +75,7 @@ public class ImportController {
 
         if (ArrayUtil.isNotEmpty(typeNames)) {
             List<ComponentDTO> componentDTOs = new ArrayList<>();
-            Map<String, String> mapping = mappingService.findAll();
+            Map<String, String> mapping = mappingService.findAll(Type.COMPONENT);
             try (FeatureIterator<SimpleFeature> simpleFeatureIterator = getFeatures(fileDataStore, typeNames)) {
                 while (simpleFeatureIterator.hasNext()) {
                     SimpleFeature simpleFeature = simpleFeatureIterator.next();

@@ -1,4 +1,4 @@
-package com.king.urban.gis.entity;
+package com.king.urban.gis.entity.mapping;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;

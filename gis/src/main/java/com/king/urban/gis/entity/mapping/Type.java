@@ -1,4 +1,4 @@
-package com.king.urban.gis.entity;
+package com.king.urban.gis.entity.mapping;
 
 import javax.persistence.AttributeConverter;
 import java.util.HashMap;
@@ -6,7 +6,8 @@ import java.util.Map;
 
 public enum Type {
 
-    Component(0, "部件");
+    COMPONENT(0, "部件"),
+    CELL_GRID(1, "单元网格");
 
     Type(Integer key, String value) {
         this.key = key;
