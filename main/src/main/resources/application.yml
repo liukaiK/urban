@@ -57,6 +57,3 @@ sa-token:
   is-share: true
   # token风格
   token-style: simple-uuid
-logging:
-  level:
-    org.hibernate.type.descriptor.sql.BasicBinder: off

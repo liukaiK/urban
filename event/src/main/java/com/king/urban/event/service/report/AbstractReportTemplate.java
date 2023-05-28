@@ -15,7 +15,7 @@ public abstract class AbstractReportTemplate {
     public final void report(ReportDTO reportDTO) {
         Source source = getSource();
         if (source == null) {
-            throw new RuntimeException("source cannot be null");
+            throw new IllegalArgumentException("source cannot be null");
         }
 
         Position position = getPosition(reportDTO);

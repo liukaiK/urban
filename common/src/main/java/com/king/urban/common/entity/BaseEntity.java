@@ -1,7 +1,6 @@
 package com.king.urban.common.entity;
 
-import com.king.urban.common.constant.SysConstants;
-import org.hibernate.annotations.GenericGenerator;
+import cn.hutool.core.date.DatePattern;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.Persistable;
@@ -20,16 +19,15 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity<ID extends Serializable> implements Persistable<ID> {
 
     @Id
-    @GeneratedValue(generator = "id")
-    @GenericGenerator(name = "id", strategy = SysConstants.SNOW_CLASS)
+    @GeneratedValue(generator = "snow_id")
     protected ID id;
 
     @CreatedDate
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
     private LocalDateTime createTime;
 
     @LastModifiedDate
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
     private LocalDateTime updateTime;
 
     @Transient
