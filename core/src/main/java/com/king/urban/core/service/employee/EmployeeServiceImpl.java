@@ -17,7 +17,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.stat.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -60,7 +59,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
         Page<Employee> queryResult = employeeRepository.findAll(specification, pageable);
-        return new PageImpl<>(employeeConverter.convert(queryResult), queryResult.getPageable(), queryResult.getTotalElements());
+        return employeeConverter.convertPage(queryResult);
     }
 
     @Override
