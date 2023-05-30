@@ -1,5 +1,5 @@
 @GenericGenerator(
-        name = "snow_id",
+        name = SysConstants.SNOW_ID,
         strategy = SysConstants.SNOW_CLASS)
 
 package com.king.urban.common.entity;

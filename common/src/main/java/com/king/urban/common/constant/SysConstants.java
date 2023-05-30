@@ -6,6 +6,8 @@ public class SysConstants {
 
     public static final String SNOW_CLASS = BASE_PACKAGE + ".common.id.SnowIdGenerator";
 
+    public static final String SNOW_ID = "snow_id";
+
     public static final String DELETED_FILED = "deleted";
 
     public static final int DELETED_VALUE = 0;

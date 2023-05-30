@@ -1,6 +1,7 @@
 package com.king.urban.common.entity;
 
 import cn.hutool.core.date.DatePattern;
+import com.king.urban.common.constant.SysConstants;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.Persistable;
@@ -19,7 +20,7 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity<ID extends Serializable> implements Persistable<ID> {
 
     @Id
-    @GeneratedValue(generator = "snow_id")
+    @GeneratedValue(generator = SysConstants.SNOW_ID)
     protected ID id;
 
     @CreatedDate
