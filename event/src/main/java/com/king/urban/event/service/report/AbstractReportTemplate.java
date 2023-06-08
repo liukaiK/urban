@@ -5,6 +5,7 @@ import com.king.urban.event.entity.Position;
 import com.king.urban.event.entity.Source;
 import com.king.urban.event.pojo.report.ReportDTO;
 import com.king.urban.event.repository.EventRepository;
+import com.king.urban.event.repository.code.EventCodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractReportTemplate {
@@ -12,8 +13,12 @@ public abstract class AbstractReportTemplate {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private EventCodeRepository eventCodeRepository;
+
     public final void report(ReportDTO reportDTO) {
         Source source = getSource();
+
         if (source == null) {
             throw new IllegalArgumentException("source cannot be null");
         }
@@ -22,7 +27,10 @@ public abstract class AbstractReportTemplate {
 
         Event event = new Event(source);
 
+
         event.updatePosition(position);
+        event.updateCode(eventCodeRepository.generateNextCode());
+
 
         eventRepository.save(event);
 

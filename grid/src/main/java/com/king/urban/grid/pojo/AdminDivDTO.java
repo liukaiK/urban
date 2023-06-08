@@ -9,5 +9,7 @@ public class AdminDivDTO {
 
     private String code;
 
+    private Integer level;
+
 
 }

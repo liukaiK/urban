@@ -24,7 +24,7 @@ import javax.persistence.Table;
 @DynamicInsert
 @DynamicUpdate
 @Where(clause = SysConstants.WHERE_DELETE)
-@Table(name = "t_sys_admin_div")
+@Table(name = "t_grid_admin_div")
 public class AdminDiv extends DeletableEntity<Long> {
 
     private String name;

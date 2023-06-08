@@ -70,4 +70,8 @@ public class Event extends DeletableEntity<Long> {
         this.position = position;
     }
 
+    public void updateCode(String code) {
+        this.code = code;
+    }
+
 }
