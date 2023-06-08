@@ -17,6 +17,7 @@
 
     <modules>
         <module>event-test</module>
+        <module>grid-test</module>
     </modules>
 
 

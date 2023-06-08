@@ -16,7 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MainApplication.class)
+@SpringBootTest(classes = MainApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BaseTest {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -37,11 +37,6 @@ public class BaseTest {
                 }, "/*")
                 .addFilter((request, response, chain) -> {
                     StpUtil.login(1);
-                    String tokenName = StpUtil.getTokenName();
-                    String tokenValue = StpUtil.getTokenValue();
-
-                    log.debug("tokenName:{}", tokenName);
-                    log.debug("tokenValue:{}", tokenValue);
                     chain.doFilter(request, response);
                 }, "/*")
                 .build();
