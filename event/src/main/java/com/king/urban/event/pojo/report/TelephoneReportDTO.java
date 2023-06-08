@@ -1,6 +1,13 @@
 package com.king.urban.event.pojo.report;
 
+import lombok.Data;
+
+@Data
 public class TelephoneReportDTO implements ReportDTO {
+
+    private String longitude;
+
+    private String latitude;
 
     @Override
     public String getEventTypeId() {
@@ -19,12 +26,12 @@ public class TelephoneReportDTO implements ReportDTO {
 
     @Override
     public String getLongitude() {
-        return null;
+        return longitude;
     }
 
     @Override
     public String getLatitude() {
-        return null;
+        return latitude;
     }
 
     @Override
