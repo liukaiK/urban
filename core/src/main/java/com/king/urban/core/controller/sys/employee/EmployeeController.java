@@ -25,7 +25,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/seaarch")
+    @GetMapping("/search")
     public Result search(SearchEmployeeDTO searchEmployeeDTO, @PageableDefault Pageable pageable) {
         Page<EmployeeVO> page = employeeService.search(searchEmployeeDTO, pageable);
         return Result.success(page);
