@@ -17,7 +17,6 @@ import com.king.urban.core.repository.employee.EmployeeRepository;
 import com.king.urban.core.repository.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -55,13 +54,15 @@ public class DeptServiceImpl implements DeptService {
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
         Page<Dept> queryResult = deptRepository.findAll(specification, pageable);
-        return new PageImpl<>(deptConverter.convert(queryResult), queryResult.getPageable(), queryResult.getTotalElements());
+        return deptConverter.convertPage(queryResult);
     }
 
     @Override
     public void create(CreateDeptDTO createDeptDTO) {
+        Dept parentDept = deptRepository.findById(createDeptDTO.getParentId())
+                .orElseThrow(() -> new IllegalArgumentException("父部门不存在"));
         Dept dept = new Dept();
-        deptRepository.findById(createDeptDTO.getParentId()).ifPresent(dept::updateParent);
+        dept.updateParent(parentDept);
         dept.updateName(createDeptDTO.getName());
         deptRepository.save(dept);
     }

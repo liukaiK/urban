@@ -28,7 +28,7 @@ public class LoginServiceImpl implements LoginService {
     public void login(LoginDTO loginDTO) {
         Username username = new Username(loginDTO.getUsername());
         Employee employee = employeeRepository.getByUsername(username)
-                .orElseThrow(() -> new RuntimeException(StrFormatter.format("账号:{}不存在!", username)));
+                .orElseThrow(() -> new IllegalArgumentException(StrFormatter.format("账号:{}不存在!", username)));
 
         // TODO 校验密码 开发阶段 暂时先注掉
         String rawPassword = loginDTO.getPassword();

@@ -25,16 +25,13 @@ public class Employee extends DeletableEntity<Long> {
     /**
      * 姓名
      */
-    @Embedded
     private Name name;
 
     /**
      * 账号
      */
-    @Embedded
     private Username username;
 
-    @Embedded
     private Password password;
 
     /**
