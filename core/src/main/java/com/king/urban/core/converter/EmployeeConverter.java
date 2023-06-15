@@ -1,5 +1,6 @@
 package com.king.urban.core.converter;
 
+import com.king.urban.common.converter.BaseConverter;
 import com.king.urban.core.entity.employee.Employee;
 import com.king.urban.core.pojo.vo.employee.EmployeeVO;
 import org.mapstruct.Mapper;

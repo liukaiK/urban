@@ -1,4 +1,4 @@
-package com.king.urban.core.converter;
+package com.king.urban.common.converter;
 
 import com.king.urban.common.entity.BaseEntity;
 import org.springframework.data.domain.Page;

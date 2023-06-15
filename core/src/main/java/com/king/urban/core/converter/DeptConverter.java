@@ -1,5 +1,6 @@
 package com.king.urban.core.converter;
 
+import com.king.urban.common.converter.BaseConverter;
 import com.king.urban.core.entity.dept.Dept;
 import com.king.urban.core.pojo.vo.dept.DeptVO;
 import org.mapstruct.Mapper;
