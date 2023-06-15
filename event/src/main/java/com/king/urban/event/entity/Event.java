@@ -46,8 +46,6 @@ public class Event extends DeletableEntity<Long> {
      */
     private String cellGridName;
 
-
-    @Embedded
     private Position position;
 
     private String taskId;
