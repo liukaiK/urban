@@ -1,8 +1,8 @@
 package com.king.urban.event.service.report;
 
-import com.king.urban.event.entity.Event;
-import com.king.urban.event.entity.Position;
-import com.king.urban.event.entity.Source;
+import com.king.urban.event.entity.event.Event;
+import com.king.urban.event.entity.event.Position;
+import com.king.urban.event.entity.event.Source;
 import com.king.urban.event.pojo.report.ReportDTO;
 import com.king.urban.event.repository.EventRepository;
 import com.king.urban.event.repository.code.EventCodeRepository;

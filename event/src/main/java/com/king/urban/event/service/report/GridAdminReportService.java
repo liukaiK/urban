@@ -1,6 +1,6 @@
 package com.king.urban.event.service.report;
 
-import com.king.urban.event.entity.Source;
+import com.king.urban.event.entity.event.Source;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,4 +1,4 @@
-package com.king.urban.event.entity;
+package com.king.urban.event.entity.event;
 
 import com.king.urban.common.util.PointUtils;
 import org.locationtech.jts.geom.Point;

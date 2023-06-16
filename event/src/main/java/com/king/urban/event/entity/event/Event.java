@@ -1,4 +1,4 @@
-package com.king.urban.event.entity;
+package com.king.urban.event.entity.event;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
@@ -46,16 +46,9 @@ public class Event extends DeletableEntity<Long> {
      */
     private String cellGridName;
 
+    private Workflow workflow;
+
     private Position position;
-
-    private String taskId;
-
-    private String taskName;
-
-    /**
-     * 流程实例ID
-     */
-    private String processInstanceId;
 
     protected Event() {
     }
