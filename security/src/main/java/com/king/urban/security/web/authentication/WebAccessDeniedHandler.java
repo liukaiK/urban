@@ -3,6 +3,7 @@ package com.king.urban.security.web.authentication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.king.urban.common.Result;
 import com.king.urban.common.util.ResponseUtil;
+import com.king.urban.security.exception.TokenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,11 @@ public class WebAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        log.error("认证出现异常", accessDeniedException);
-        ResponseUtil.write(response, objectMapper.writeValueAsString(Result.fail("", "")), MediaType.APPLICATION_JSON_VALUE);
+        log.debug("认证出现异常", accessDeniedException);
+        if (accessDeniedException instanceof TokenException) {
+            // TODO 需要标准化响应码
+            ResponseUtil.write(response, objectMapper.writeValueAsString(Result.fail("", accessDeniedException.getMessage())), MediaType.APPLICATION_JSON_VALUE);
+        }
     }
 
 }

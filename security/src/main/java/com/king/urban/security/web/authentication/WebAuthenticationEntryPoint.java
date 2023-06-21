@@ -26,7 +26,7 @@ public class WebAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        log.error("异常,", authException);
+        log.debug("访问资源异常", authException);
         ResponseUtil.write(response, objectMapper.writeValueAsString(Result.fail("123", "失败")), MediaType.APPLICATION_JSON_VALUE);
     }
 

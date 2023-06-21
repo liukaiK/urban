@@ -22,6 +22,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -42,6 +43,9 @@ public class WebSecurityConfigurer {
     private AuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Autowired
+    private AuthenticationFailureHandler authenticationFailureHandler;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -52,11 +56,11 @@ public class WebSecurityConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        log.debug("初始化web SpringSecurity功能");
+        log.debug("----------初始化web SpringSecurity功能----------");
         http
                 .authorizeRequests()
                 .antMatchers(SecurityConstants.LOGIN_PROCESS_URL).permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 //TODO logout这块要改
                 .logout().logoutSuccessUrl(SecurityConstants.LOGIN_PROCESS_URL)
@@ -85,6 +89,7 @@ public class WebSecurityConfigurer {
     private SaServletFilter authorizationFilter() {
         SaServletFilter saServletFilter = new SaServletFilter();
         saServletFilter.setIncludeList(Arrays.asList("/**"));
+        saServletFilter.setExcludeList(Arrays.asList(SecurityConstants.IGNORING_URL));
         saServletFilter.setAuth(saFilterAuthStrategy);
         saServletFilter.setError(saFilterErrorStrategy);
         return saServletFilter;
@@ -94,6 +99,7 @@ public class WebSecurityConfigurer {
         UsernamePasswordCaptchaAuthenticationFilter usernamePasswordCaptchaAuthenticationFilter = new UsernamePasswordCaptchaAuthenticationFilter();
         usernamePasswordCaptchaAuthenticationFilter.setAuthenticationManager(new ProviderManager(Arrays.asList(userDetailsAuthenticationProvider())));
         usernamePasswordCaptchaAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
+        usernamePasswordCaptchaAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
         usernamePasswordCaptchaAuthenticationFilter.setObjectMapper(objectMapper);
         return usernamePasswordCaptchaAuthenticationFilter;
     }
@@ -110,7 +116,7 @@ public class WebSecurityConfigurer {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().antMatchers("/favicon.ico");
+        return web -> web.ignoring().antMatchers(SecurityConstants.IGNORING_URL);
     }
 
 }
