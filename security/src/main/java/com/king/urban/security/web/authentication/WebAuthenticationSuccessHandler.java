@@ -3,9 +3,7 @@ package com.king.urban.security.web.authentication;
 import cn.dev33.satoken.stp.StpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.king.urban.common.Result;
-import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.util.ResponseUtil;
-import com.king.urban.security.web.principal.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -24,9 +22,6 @@ public class WebAuthenticationSuccessHandler implements AuthenticationSuccessHan
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        Principal principal = (Principal) authentication.getPrincipal();
-        StpUtil.login(principal.getId(), "web");
-        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PRINCIPAL, principal);
         ResponseUtil.write(response, objectMapper.writeValueAsString(Result.success(StpUtil.getTokenInfo())), MediaType.APPLICATION_JSON_VALUE);
     }
 

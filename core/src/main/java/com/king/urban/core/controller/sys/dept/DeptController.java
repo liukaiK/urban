@@ -1,5 +1,6 @@
 package com.king.urban.core.controller.sys.dept;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.king.urban.common.Result;
 import com.king.urban.core.pojo.dto.dept.CreateDeptDTO;
 import com.king.urban.core.pojo.dto.dept.RemoveDeptDTO;
@@ -25,6 +26,7 @@ public class DeptController {
     private DeptService deptService;
 
     @GetMapping("/search")
+    @SaCheckPermission("dept-search")
     public Result search(SearchDeptDTO searchDeptDTO, @PageableDefault Pageable pageable) {
         Page<DeptVO> page = deptService.search(searchDeptDTO, pageable);
         return Result.success(page);

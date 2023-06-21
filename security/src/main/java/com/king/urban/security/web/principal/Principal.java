@@ -25,6 +25,7 @@ public class Principal implements UserDetails, Serializable {
 
     private Long deptId;
 
+    @JsonIgnore
     private Collection<? extends GrantedAuthority> authorities;
 
     private void principal() {

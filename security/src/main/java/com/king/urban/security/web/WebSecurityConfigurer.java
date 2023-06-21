@@ -25,6 +25,7 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 import java.util.Arrays;
 
@@ -49,6 +50,9 @@ public class WebSecurityConfigurer {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
+    private SessionAuthenticationStrategy sessionAuthenticationStrategy;
+
+    @Autowired
     private AuthenticationEntryPoint authenticationEntryPoint;
 
     @Autowired
@@ -68,9 +72,9 @@ public class WebSecurityConfigurer {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .csrf().disable()
-                .sessionManagement().disable()
-                .anonymous().disable()
-                .securityContext().disable()
+//                .sessionManagement().disable()
+//                .anonymous().disable()
+//                .securityContext().disable()
                 .cors()
                 .and()
                 .addFilterBefore(usernamePasswordCaptchaAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
@@ -88,7 +92,7 @@ public class WebSecurityConfigurer {
 
     private SaServletFilter authorizationFilter() {
         SaServletFilter saServletFilter = new SaServletFilter();
-        saServletFilter.setIncludeList(Arrays.asList("/**"));
+        saServletFilter.setIncludeList(Arrays.asList(SecurityConstants.AUTH_URL));
         saServletFilter.setExcludeList(Arrays.asList(SecurityConstants.IGNORING_URL));
         saServletFilter.setAuth(saFilterAuthStrategy);
         saServletFilter.setError(saFilterErrorStrategy);
@@ -100,6 +104,7 @@ public class WebSecurityConfigurer {
         usernamePasswordCaptchaAuthenticationFilter.setAuthenticationManager(new ProviderManager(Arrays.asList(userDetailsAuthenticationProvider())));
         usernamePasswordCaptchaAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
         usernamePasswordCaptchaAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
+        usernamePasswordCaptchaAuthenticationFilter.setSessionAuthenticationStrategy(sessionAuthenticationStrategy);
         usernamePasswordCaptchaAuthenticationFilter.setObjectMapper(objectMapper);
         return usernamePasswordCaptchaAuthenticationFilter;
     }

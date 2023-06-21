@@ -16,4 +16,6 @@ public class SysConstants {
 
     public static final String SESSION_CURRENT_PRINCIPAL = "current_principal";
 
+    public static final String SESSION_CURRENT_PERMISSION = "current_permission";
+
 }

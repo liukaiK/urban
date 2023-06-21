@@ -4,12 +4,14 @@ import cn.hutool.core.util.ObjectUtil;
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
 import com.king.urban.core.entity.dept.Dept;
+import com.king.urban.core.entity.menu.Menu;
 import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * 岗位
@@ -32,6 +34,10 @@ public class Post extends DeletableEntity<Long> {
     @JoinColumn
     @ManyToOne(fetch = FetchType.LAZY)
     private Dept dept;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "t_sys_post_menu", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "menu_id"))
+    private Collection<Menu> menus;
 
     public void updateName(String name) {
         this.name = name;

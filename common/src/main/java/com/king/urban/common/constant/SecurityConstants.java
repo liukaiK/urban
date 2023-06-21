@@ -12,6 +12,11 @@ public class SecurityConstants {
             "/favicon.ico"
     };
 
+    /**
+     * 需要拦截的资源
+     */
+    public final static String AUTH_URL = "/**";
+
     public final static String LOGIN_PROCESS_URL = "/login";
 
 }

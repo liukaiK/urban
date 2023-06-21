@@ -1,5 +1,6 @@
 package com.king.urban.core.controller.sys.employee;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.king.urban.common.Result;
 import com.king.urban.core.pojo.dto.employee.CreateEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.RemoveEmployeeDTO;
@@ -26,6 +27,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/search")
+    @SaCheckPermission("employee-search")
     public Result search(SearchEmployeeDTO searchEmployeeDTO, @PageableDefault Pageable pageable) {
         Page<EmployeeVO> page = employeeService.search(searchEmployeeDTO, pageable);
         return Result.success(page);
