@@ -1,0 +1,35 @@
+2023-06-02 17:45:02.605 [34m INFO[0;39m --- [restartedMain] [36mcom.king.urban.main.MainApplication[0;39m 55: Starting MainApplication using Java 19.0.2 on K-Mac.local with PID 50193 (/Users/liukai/IdeaProjects/urban/main/target/classes started by liukai in /Users/liukai/IdeaProjects/urban)
+2023-06-02 17:45:02.611 [34m INFO[0;39m --- [background-preinit] [36mo.h.validator.internal.util.Version[0;39m 21: HV000001: Hibernate Validator 6.2.5.Final
+2023-06-02 17:45:02.611 [34m INFO[0;39m --- [restartedMain] [36mcom.king.urban.main.MainApplication[0;39m 631: No active profile set, falling back to 1 default profile: "default"
+2023-06-02 17:45:05.243 [34m INFO[0;39m --- [restartedMain] [36mo.a.coyote.http11.Http11NioProtocol[0;39m 173: Initializing ProtocolHandler ["http-nio-9999"]
+2023-06-02 17:45:05.243 [34m INFO[0;39m --- [restartedMain] [36mo.a.catalina.core.StandardService[0;39m 173: Starting service [Tomcat]
+2023-06-02 17:45:05.243 [34m INFO[0;39m --- [restartedMain] [36mo.a.catalina.core.StandardEngine[0;39m 173: Starting Servlet engine: [Apache Tomcat/9.0.74]
+2023-06-02 17:45:05.348 [34m INFO[0;39m --- [restartedMain] [36mo.a.c.c.C.[Tomcat].[localhost].[/][0;39m 173: Initializing Spring embedded WebApplicationContext
+2023-06-02 17:45:05.645 [34m INFO[0;39m --- [restartedMain] [36mo.h.jpa.internal.util.LogHelper[0;39m 31: HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-02 17:45:05.731 [34m INFO[0;39m --- [restartedMain] [36morg.hibernate.Version[0;39m 44: HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-06-02 17:45:05.916 [34m INFO[0;39m --- [restartedMain] [36mo.h.s.integration.SpatialService[0;39m 42: HHH80000001: hibernate-spatial integration enabled : true
+2023-06-02 17:45:05.953 [34m INFO[0;39m --- [restartedMain] [36mo.h.annotations.common.Version[0;39m 56: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-02 17:45:06.103 [34m INFO[0;39m --- [restartedMain] [36mcom.zaxxer.hikari.HikariDataSource[0;39m 110: HikariPool-1 - Starting...
+2023-06-02 17:45:06.340 [34m INFO[0;39m --- [restartedMain] [36mcom.zaxxer.hikari.HikariDataSource[0;39m 123: HikariPool-1 - Start completed.
+2023-06-02 17:45:06.366 [34m INFO[0;39m --- [restartedMain] [36morg.hibernate.dialect.Dialect[0;39m 175: HHH000400: Using dialect: org.hibernate.spatial.dialect.mysql.MySQL8SpatialDialect
+2023-06-02 17:45:06.374 [34m INFO[0;39m --- [restartedMain] [36morg.hibernate.dialect.Dialect[0;39m 175: HHH000400: Using dialect: org.hibernate.spatial.dialect.mysql.MySQLSpatialDialect
+2023-06-02 17:45:07.585 [34m INFO[0;39m --- [restartedMain] [36mo.h.e.t.j.p.i.JtaPlatformInitiator[0;39m 52: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-02 17:45:08.466 [34m INFO[0;39m --- [restartedMain] [36mo.f.s.b.c.CmmnEngineAutoConfiguration[0;39m 104: No deployment resources were found for autodeployment
+2023-06-02 17:45:08.543 [34m INFO[0;39m --- [restartedMain] [36mo.f.s.b.d.DmnEngineAutoConfiguration[0;39m 104: No deployment resources were found for autodeployment
+2023-06-02 17:45:08.576 [34m INFO[0;39m --- [restartedMain] [36mo.f.s.b.f.FormEngineAutoConfiguration[0;39m 104: No deployment resources were found for autodeployment
+2023-06-02 17:45:08.611 [34m INFO[0;39m --- [restartedMain] [36mo.f.s.b.e.EventRegistryAutoConfiguration[0;39m 104: No deployment resources were found for autodeployment
+2023-06-02 17:45:08.660 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1000: Found 7 Engine Configurators in total:
+2023-06-02 17:45:08.660 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1002: class org.flowable.engine.spring.configurator.SpringProcessEngineConfigurator (priority:50000)
+2023-06-02 17:45:08.660 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1002: class org.flowable.eventregistry.spring.configurator.SpringEventRegistryConfigurator (priority:100000)
+2023-06-02 17:45:08.660 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1002: class org.flowable.idm.spring.configurator.SpringIdmEngineConfigurator (priority:150000)
+2023-06-02 17:45:08.660 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1002: class org.flowable.dmn.spring.configurator.SpringDmnEngineConfigurator (priority:200000)
+2023-06-02 17:45:08.661 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1002: class org.flowable.form.spring.configurator.SpringFormEngineConfigurator (priority:300000)
+2023-06-02 17:45:08.661 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1002: class org.flowable.content.spring.configurator.SpringContentEngineConfigurator (priority:400000)
+2023-06-02 17:45:08.661 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1002: class org.flowable.cmmn.spring.configurator.SpringCmmnEngineConfigurator (priority:500000)
+2023-06-02 17:45:08.661 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1028: Executing beforeInit() of class org.flowable.engine.spring.configurator.SpringProcessEngineConfigurator (priority:50000)
+2023-06-02 17:45:08.678 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1028: Executing beforeInit() of class org.flowable.eventregistry.spring.configurator.SpringEventRegistryConfigurator (priority:100000)
+2023-06-02 17:45:08.682 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1028: Executing beforeInit() of class org.flowable.idm.spring.configurator.SpringIdmEngineConfigurator (priority:150000)
+2023-06-02 17:45:08.685 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1028: Executing beforeInit() of class org.flowable.dmn.spring.configurator.SpringDmnEngineConfigurator (priority:200000)
+2023-06-02 17:45:08.688 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1028: Executing beforeInit() of class org.flowable.form.spring.configurator.SpringFormEngineConfigurator (priority:300000)
+2023-06-02 17:45:08.692 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1028: Executing beforeInit() of class org.flowable.content.spring.configurator.SpringContentEngineConfigurator (priority:400000)
+2023-06-02 17:45:08.694 [34m INFO[0;39m --- [restartedMain] [36mo.f.a.s.SpringAppEngineConfiguration[0;39m 1028: Executing beforeInit() of class org.flowable.cmmn.spring.configurator.SpringCmmnEngineConfigurator (priority:500000)

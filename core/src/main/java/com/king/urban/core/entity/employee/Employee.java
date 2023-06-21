@@ -4,7 +4,6 @@ import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
 import com.king.urban.core.entity.dept.Dept;
 import com.king.urban.core.entity.post.Post;
-import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
@@ -12,7 +11,6 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Getter
 @Entity
 @DynamicInsert
 @DynamicUpdate
@@ -77,7 +75,7 @@ public class Employee extends DeletableEntity<Long> {
      * 获取加密之后的密码
      */
     public String getEncodedPassword() {
-        return this.getPassword().getPassword();
+        return this.password.getPassword();
     }
 
     public String getUsername() {
@@ -90,6 +88,18 @@ public class Employee extends DeletableEntity<Long> {
 
     public void updatePosts(Collection<Post> posts) {
         this.posts = posts;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public Dept getDept() {
+        return dept;
+    }
+
+    public Collection<Post> getPosts() {
+        return posts;
     }
 
 }

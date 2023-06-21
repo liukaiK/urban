@@ -1,0 +1,1 @@
+2023-06-08 11:14:33.268 [1;31mERROR[0;39m --- [main ] [36mo.h.e.jdbc.spi.SqlExceptionHelper[0;39m 142: Field 'level' doesn't have a default value

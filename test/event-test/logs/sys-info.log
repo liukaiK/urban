@@ -1,0 +1,17 @@
+2023-06-15 16:56:18.591 [34m INFO[0;39m --- [main ] [36morg.hibernate.Version[0;39m 44: HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-06-15 16:56:18.883 [34m INFO[0;39m --- [main ] [36mo.h.s.integration.SpatialService[0;39m 42: HHH80000001: hibernate-spatial integration enabled : true
+2023-06-15 16:56:18.919 [34m INFO[0;39m --- [main ] [36mo.h.annotations.common.Version[0;39m 56: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-15 16:56:19.072 [34m INFO[0;39m --- [main ] [36mo.hibernate.orm.connections.pooling[0;39m 119: HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://127.0.0.1:3306/urban?useUnicode=true&autoReconnect=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true]
+2023-06-15 16:56:19.073 [34m INFO[0;39m --- [main ] [36mo.hibernate.orm.connections.pooling[0;39m 128: HHH10001001: Connection properties: {password=****, user=root}
+2023-06-15 16:56:19.073 [34m INFO[0;39m --- [main ] [36mo.hibernate.orm.connections.pooling[0;39m 132: HHH10001003: Autocommit mode: false
+2023-06-15 16:56:19.078 [34m INFO[0;39m --- [main ] [36mo.h.e.j.c.i.DriverManagerConnectionProviderImpl[0;39m 322: HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-06-15 16:56:19.410 [34m INFO[0;39m --- [main ] [36morg.hibernate.dialect.Dialect[0;39m 175: HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-06-15 16:56:19.639 [34m INFO[0;39m --- [main ] [36mo.h.validator.internal.util.Version[0;39m 21: HV000001: Hibernate Validator 6.2.5.Final
+2023-06-15 16:56:19.826 [34m INFO[0;39m --- [main ] [36mo.h.e.t.j.p.i.JtaPlatformInitiator[0;39m 52: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-15 16:56:19.840 [34m INFO[0;39m --- [main ] [36mo.h.s.integration.SpatialService[0;39m 42: HHH80000001: hibernate-spatial integration enabled : true
+2023-06-15 16:56:19.841 [34m INFO[0;39m --- [main ] [36mo.hibernate.orm.connections.pooling[0;39m 119: HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://127.0.0.1:3306/urban?useUnicode=true&autoReconnect=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true]
+2023-06-15 16:56:19.842 [34m INFO[0;39m --- [main ] [36mo.hibernate.orm.connections.pooling[0;39m 128: HHH10001001: Connection properties: {password=****, user=root}
+2023-06-15 16:56:19.842 [34m INFO[0;39m --- [main ] [36mo.hibernate.orm.connections.pooling[0;39m 132: HHH10001003: Autocommit mode: false
+2023-06-15 16:56:19.842 [34m INFO[0;39m --- [main ] [36mo.h.e.j.c.i.DriverManagerConnectionProviderImpl[0;39m 322: HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-06-15 16:56:19.849 [34m INFO[0;39m --- [main ] [36morg.hibernate.dialect.Dialect[0;39m 175: HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-06-15 16:56:19.865 [34m INFO[0;39m --- [main ] [36mo.h.e.t.j.p.i.JtaPlatformInitiator[0;39m 52: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]

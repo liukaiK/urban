@@ -14,8 +14,8 @@ public class ClaimServiceImpl implements ClaimService {
 
     @Override
     public void claim(Event event, Employee employee) {
-        
-        workflowClaimService.claim(event.getTaskId(), String.valueOf(employee.getId()));
+
+        workflowClaimService.claim(event.getWorkflow().getTaskId(), String.valueOf(employee.getId()));
     }
 
 }

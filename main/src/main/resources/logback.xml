@@ -71,7 +71,7 @@
     <logger name="org.springframework.boot.devtools" level="off"/>
 
     <!-- 等同于 SpringSecurity @EnableWebSecurity(debug = false)  -->
-    <logger name="Spring Security Debugger" level="debug"/>
+    <logger name="Spring Security Debugger" level="false"/>
 
     <logger name="org.hibernate.sql" level="debug"/>
 

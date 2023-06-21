@@ -4,14 +4,12 @@ import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
 import com.king.urban.grid.entity.CellGrid;
 import com.king.urban.grid.entity.DutyGrid;
-import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
-@Getter
 @Entity
 @DynamicInsert
 @DynamicUpdate
@@ -65,4 +63,31 @@ public class Event extends DeletableEntity<Long> {
         this.code = code;
     }
 
+    public Source getSource() {
+        return source;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public DutyGrid getDutyGrid() {
+        return dutyGrid;
+    }
+
+    public CellGrid getCellGrid() {
+        return cellGrid;
+    }
+
+    public String getCellGridName() {
+        return cellGridName;
+    }
+
+    public Workflow getWorkflow() {
+        return workflow;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
 }
