@@ -25,7 +25,7 @@ public class EmployeeServiceTest extends BaseTest {
     @Test
     @Transactional
     @Rollback(value = false)
-    public void employeeUpdateTest() {
+    public void employeeUpdateTest() throws Exception {
         UpdateEmployeeDTO updateEmployeeDTO = new UpdateEmployeeDTO();
         updateEmployeeDTO.setId(1L);
         updateEmployeeDTO.setMobilePhone("13333333333");
