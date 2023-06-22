@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @author liukai
  */
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/system/employee")
 public class EmployeeController {
 
     @Autowired

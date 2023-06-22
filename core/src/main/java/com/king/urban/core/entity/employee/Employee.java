@@ -35,7 +35,7 @@ public class Employee extends DeletableEntity<Long> {
     /**
      * 手机号码
      */
-    private String mobilePhone;
+    private MobilePhone mobilePhone;
 
     /**
      * 部门
@@ -70,7 +70,7 @@ public class Employee extends DeletableEntity<Long> {
         this.password = password;
     }
 
-    public void updateMobilePhone(String mobilePhone) {
+    public void updateMobilePhone(MobilePhone mobilePhone) {
         this.mobilePhone = mobilePhone;
     }
 
@@ -97,7 +97,7 @@ public class Employee extends DeletableEntity<Long> {
         this.posts = posts;
     }
 
-    public String getMobilePhone() {
+    public MobilePhone getMobilePhone() {
         return mobilePhone;
     }
 

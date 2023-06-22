@@ -9,7 +9,8 @@ public class SecurityConstants {
      * 不拦截的资源
      */
     public final static String[] IGNORING_URL = new String[]{
-            "/favicon.ico"
+            "/favicon.ico",
+            "/system/init"
     };
 
     /**

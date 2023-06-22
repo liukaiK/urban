@@ -13,5 +13,7 @@ public class UpdateEmployeeDTO {
 
     private Long deptId;
 
+    private String mobilePhone;
+
 
 }
