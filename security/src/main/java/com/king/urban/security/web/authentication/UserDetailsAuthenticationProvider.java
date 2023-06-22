@@ -1,6 +1,8 @@
 package com.king.urban.security.web.authentication;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.crypto.CryptoException;
+import com.king.urban.security.web.principal.Principal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -45,6 +47,8 @@ public class UserDetailsAuthenticationProvider implements AuthenticationProvider
             user = userDetailsService.loadUserByUsername(username);
             preAuthenticationChecks(user);
             additionalAuthenticationChecks(user, (UsernamePasswordCaptchaAuthenticationToken) authentication);
+            // 验证成功之后 使用satoken进行登录
+            StpUtil.login(((Principal) user).getId(), "web");
         } catch (AuthenticationException exception) {
             log.debug("账号{}认证失败", username, exception);
             throw exception;

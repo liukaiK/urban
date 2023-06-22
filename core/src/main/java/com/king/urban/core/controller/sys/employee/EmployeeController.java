@@ -27,7 +27,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/search")
-    @SaCheckPermission("employee-search")
+    @SaCheckPermission("system:employee:search")
     public Result search(SearchEmployeeDTO searchEmployeeDTO, @PageableDefault Pageable pageable) {
         Page<EmployeeVO> page = employeeService.search(searchEmployeeDTO, pageable);
         return Result.success(page);

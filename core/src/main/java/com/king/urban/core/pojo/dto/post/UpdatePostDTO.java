@@ -3,7 +3,9 @@ package com.king.urban.core.pojo.dto.post;
 import lombok.Data;
 
 @Data
-public class CreatePostDTO {
+public class UpdatePostDTO {
+
+    private Long id;
 
     private String name;
 

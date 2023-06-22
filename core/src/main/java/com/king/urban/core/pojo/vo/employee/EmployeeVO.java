@@ -1,6 +1,7 @@
 package com.king.urban.core.pojo.vo.employee;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.king.urban.core.pojo.vo.post.PostVO;
 import lombok.Data;
 
 import java.time.LocalDateTime;

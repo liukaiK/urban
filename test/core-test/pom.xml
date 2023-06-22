@@ -5,24 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.king</groupId>
-        <artifactId>urban</artifactId>
+        <artifactId>urban-test</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>urban-grid</artifactId>
+    <artifactId>core-test</artifactId>
 
-    <name>urban-grid</name>
-    <description>网格模块</description>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>urban-common</artifactId>
+            <artifactId>urban-main</artifactId>
+            <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.locationtech.jts</groupId>-->
-<!--            <artifactId>jts-core</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>urban-core</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>

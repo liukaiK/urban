@@ -29,6 +29,11 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 
 import java.util.Arrays;
 
+/**
+ * SpringSecurity配置与satoken一起用的
+ *
+ * @author liukai
+ */
 @EnableWebSecurity(debug = true)
 public class WebSecurityConfigurer {
 
@@ -72,9 +77,6 @@ public class WebSecurityConfigurer {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .csrf().disable()
-//                .sessionManagement().disable()
-//                .anonymous().disable()
-//                .securityContext().disable()
                 .cors()
                 .and()
                 .addFilterBefore(usernamePasswordCaptchaAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
@@ -114,7 +116,6 @@ public class WebSecurityConfigurer {
         UserDetailsAuthenticationProvider authenticationProvider = new UserDetailsAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder);
-//        authenticationProvider.setRedisUtils(redisUtils);
         return authenticationProvider;
     }
 

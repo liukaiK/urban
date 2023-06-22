@@ -1,4 +1,4 @@
-package com.king.urban.core.pojo.vo.employee;
+package com.king.urban.core.pojo.vo.post;
 
 import lombok.Data;
 

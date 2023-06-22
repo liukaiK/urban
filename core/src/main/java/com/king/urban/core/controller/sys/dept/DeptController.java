@@ -26,7 +26,7 @@ public class DeptController {
     private DeptService deptService;
 
     @GetMapping("/search")
-    @SaCheckPermission("dept-search")
+    @SaCheckPermission("system:dept:search")
     public Result search(SearchDeptDTO searchDeptDTO, @PageableDefault Pageable pageable) {
         Page<DeptVO> page = deptService.search(searchDeptDTO, pageable);
         return Result.success(page);

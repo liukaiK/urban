@@ -8,7 +8,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.spatial.dialect.mysql.MySQL8SpatialDialect
-    show-sql: false
+    show-sql: true
     open-in-view: false
     properties:
       hibernate:

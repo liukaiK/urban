@@ -14,8 +14,19 @@ public class SysConstants {
 
     public static final String WHERE_DELETE = DELETED_FILED + "=" + DELETED_VALUE;
 
+    /**
+     * 当前登录人的主体信息
+     */
     public static final String SESSION_CURRENT_PRINCIPAL = "current_principal";
 
+    /**
+     * 当前登录人的岗位
+     */
+    public static final String SESSION_CURRENT_POST = "current_post";
+
+    /**
+     * 当前登录人的权限标识
+     */
     public static final String SESSION_CURRENT_PERMISSION = "current_permission";
 
 }

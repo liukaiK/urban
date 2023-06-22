@@ -21,6 +21,7 @@ public abstract class BaseEntity<ID extends Serializable> implements Persistable
 
     @Id
     @GeneratedValue(generator = SysConstants.SNOW_ID)
+    @Column(columnDefinition = "bigint unsigned not null")
     protected ID id;
 
     @CreatedDate

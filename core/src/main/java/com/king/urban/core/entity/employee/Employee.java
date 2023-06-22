@@ -51,6 +51,13 @@ public class Employee extends DeletableEntity<Long> {
     @JoinTable(name = "t_sys_employee_post", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
     private Collection<Post> posts;
 
+    public Employee() {
+    }
+
+    public Employee(Long id) {
+        this.id = id;
+    }
+
     public void updateUsername(Username username) {
         this.username = username;
     }
