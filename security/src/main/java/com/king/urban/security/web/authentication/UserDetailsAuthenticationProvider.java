@@ -32,6 +32,11 @@ public class UserDetailsAuthenticationProvider implements AuthenticationProvider
     private final GrantedAuthoritiesMapper authoritiesMapper = new NullAuthoritiesMapper();
 
 
+    public UserDetailsAuthenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+        this.userDetailsService = userDetailsService;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 

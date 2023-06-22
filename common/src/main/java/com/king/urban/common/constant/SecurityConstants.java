@@ -19,4 +19,6 @@ public class SecurityConstants {
 
     public final static String LOGIN_PROCESS_URL = "/login";
 
+    public final static String LOGOUT_PROCESS_URL = "/logout";
+
 }

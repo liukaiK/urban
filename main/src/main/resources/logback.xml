@@ -64,7 +64,7 @@
     <!-- Spring日志级别控制  -->
     <logger name="org.springframework" level="error"/>
 
-    <logger name="org.springframework.security" level="debug"/>
+    <logger name="org.springframework.security" level="info"/>
 
     <logger name="org.springframework.jdbc" level="debug"/>
 

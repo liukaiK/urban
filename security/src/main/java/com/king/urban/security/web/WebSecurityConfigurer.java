@@ -10,9 +10,9 @@ import com.king.urban.security.web.filter.UsernamePasswordCaptchaAuthenticationF
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -25,9 +25,11 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * SpringSecurity配置与satoken一起用的
@@ -63,6 +65,12 @@ public class WebSecurityConfigurer {
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
+
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         log.debug("----------初始化web SpringSecurity功能----------");
@@ -71,8 +79,7 @@ public class WebSecurityConfigurer {
                 .antMatchers(SecurityConstants.LOGIN_PROCESS_URL).permitAll()
                 .anyRequest().permitAll()
                 .and()
-                //TODO logout这块要改
-                .logout().logoutSuccessUrl(SecurityConstants.LOGIN_PROCESS_URL)
+                .logout().logoutUrl(SecurityConstants.LOGOUT_PROCESS_URL).logoutSuccessHandler(logoutSuccessHandler)
                 .and()
                 .headers().frameOptions().sameOrigin()
                 .and()
@@ -81,7 +88,7 @@ public class WebSecurityConfigurer {
                 .csrf().disable()
                 .cors()
                 .and()
-                .addFilterBefore(usernamePasswordCaptchaAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAt(usernamePasswordCaptchaAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(authorizationFilter(), FilterSecurityInterceptor.class)
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).accessDeniedHandler(accessDeniedHandler);
         return http.build();
@@ -96,7 +103,7 @@ public class WebSecurityConfigurer {
 
     private SaServletFilter authorizationFilter() {
         SaServletFilter saServletFilter = new SaServletFilter();
-        saServletFilter.setIncludeList(Arrays.asList(SecurityConstants.AUTH_URL));
+        saServletFilter.setIncludeList(Collections.singletonList(SecurityConstants.AUTH_URL));
         saServletFilter.setExcludeList(Arrays.asList(SecurityConstants.IGNORING_URL));
         saServletFilter.setAuth(saFilterAuthStrategy);
         saServletFilter.setError(saFilterErrorStrategy);
@@ -105,7 +112,7 @@ public class WebSecurityConfigurer {
 
     public UsernamePasswordCaptchaAuthenticationFilter usernamePasswordCaptchaAuthenticationFilter() {
         UsernamePasswordCaptchaAuthenticationFilter usernamePasswordCaptchaAuthenticationFilter = new UsernamePasswordCaptchaAuthenticationFilter();
-        usernamePasswordCaptchaAuthenticationFilter.setAuthenticationManager(new ProviderManager(Arrays.asList(userDetailsAuthenticationProvider())));
+        usernamePasswordCaptchaAuthenticationFilter.setAuthenticationManager(authenticationManager());
         usernamePasswordCaptchaAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
         usernamePasswordCaptchaAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
         usernamePasswordCaptchaAuthenticationFilter.setSessionAuthenticationStrategy(sessionAuthenticationStrategy);
@@ -113,12 +120,19 @@ public class WebSecurityConfigurer {
         return usernamePasswordCaptchaAuthenticationFilter;
     }
 
+    private AuthenticationManager authenticationManager() {
+        ProviderManager providerManager = new ProviderManager(userDetailsAuthenticationProvider());
+        providerManager.setAuthenticationEventPublisher(authenticationEventPublisher());
+        return providerManager;
+    }
+
 
     public AuthenticationProvider userDetailsAuthenticationProvider() {
-        UserDetailsAuthenticationProvider authenticationProvider = new UserDetailsAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder);
-        return authenticationProvider;
+        return new UserDetailsAuthenticationProvider(userDetailsService, passwordEncoder);
+    }
+
+    public AuthenticationEventPublisher authenticationEventPublisher() {
+        return new DefaultAuthenticationEventPublisher(applicationEventPublisher);
     }
 
 
