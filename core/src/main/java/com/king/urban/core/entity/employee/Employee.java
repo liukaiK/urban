@@ -41,7 +41,7 @@ public class Employee extends DeletableEntity<Long> {
      * 部门
      */
     @JoinColumn
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Dept dept;
 
     /**

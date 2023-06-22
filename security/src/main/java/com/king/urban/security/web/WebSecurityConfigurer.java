@@ -76,6 +76,8 @@ public class WebSecurityConfigurer {
                 .and()
                 .headers().frameOptions().sameOrigin()
                 .and()
+                .sessionManagement().disable()
+                .securityContext().disable()
                 .csrf().disable()
                 .cors()
                 .and()
