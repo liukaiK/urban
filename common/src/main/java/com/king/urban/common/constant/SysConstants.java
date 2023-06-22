@@ -17,16 +17,16 @@ public class SysConstants {
     /**
      * 当前登录人的主体信息
      */
-    public static final String SESSION_CURRENT_PRINCIPAL = "current_principal";
+    public static final String SESSION_CURRENT_PRINCIPAL = "principal";
 
     /**
      * 当前登录人的岗位
      */
-    public static final String SESSION_CURRENT_POST = "current_post";
+    public static final String SESSION_CURRENT_POST = "post";
 
     /**
      * 当前登录人的权限标识
      */
-    public static final String SESSION_CURRENT_PERMISSION = "current_permission";
+    public static final String SESSION_CURRENT_PERMISSION = "permission";
 
 }
