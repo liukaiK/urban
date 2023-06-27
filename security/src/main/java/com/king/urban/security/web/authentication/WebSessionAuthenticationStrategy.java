@@ -40,6 +40,7 @@ public class WebSessionAuthenticationStrategy implements SessionAuthenticationSt
         Principal principal = (Principal) authentication.getPrincipal();
         Collection<Post> posts = postRepository.findByEmployeesIn(Collections.singletonList(new Employee(principal.getId())));
         Collection<Menu> menus = menuRepository.findByPostsIn(posts);
+        StpUtil.login(principal.getId(), "web");
         StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PRINCIPAL, principal);
         StpUtil.getSession().set(SysConstants.SESSION_CURRENT_POST, posts.stream().map(Post::getName).collect(Collectors.toSet()));
         StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PERMISSION, menus.stream().map(Menu::getPermission).collect(Collectors.toSet()));
