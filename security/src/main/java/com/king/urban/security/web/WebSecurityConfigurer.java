@@ -72,7 +72,7 @@ public class WebSecurityConfigurer {
     private ApplicationEventPublisher applicationEventPublisher;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception {
         log.debug("----------初始化web SpringSecurity功能----------");
         http
                 .authorizeRequests()
