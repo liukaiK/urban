@@ -24,6 +24,7 @@
         <module>gis</module>
         <module>test</module>
         <module>security</module>
+        <module>job</module>
     </modules>
 
     <parent>
@@ -66,6 +67,7 @@
         <jts.version>1.19.0</jts.version>
         <sa.token.version>1.34.0</sa.token.version>
         <mysql.version>8.0.31</mysql.version>
+        <xxl-job.version>2.4.0</xxl-job.version>
     </properties>
 
     <dependencyManagement>
@@ -80,6 +82,12 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>urban-log</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>urban-job</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -177,6 +185,12 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-spatial</artifactId>
                 <version>${hibernate-spatial.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl-job.version}</version>
             </dependency>
 
             <dependency>
