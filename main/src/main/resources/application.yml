@@ -4,12 +4,12 @@ spring:
   application:
     name: urban
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/urban?useUnicode=true&autoReconnect=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
-    username: root
-    password: Root@123
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:dm://127.0.0.1:5236/urban?useUnicode=true&autoReconnect=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+    username: SYSDBA
+    password: SYSDBA001
+    driver-class-name: dm.jdbc.driver.DmDriver
   jpa:
-    database-platform: org.hibernate.spatial.dialect.mysql.MySQL8SpatialDialect
+    database-platform: org.hibernate.dialect.DmDialect
     show-sql: true
     open-in-view: false
     properties:

@@ -167,6 +167,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.dameng</groupId>
+                <artifactId>DmDialect-for-hibernate5.0</artifactId>
+                <version>${dm.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>eu.bitwalker</groupId>
                 <artifactId>UserAgentUtils</artifactId>
                 <version>${userAgentUtils.version}</version>
