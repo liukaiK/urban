@@ -41,6 +41,7 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
 flowable:
+  database-schema-update: false
   app:
     deploy-resources: false
   check-process-definitions: false
