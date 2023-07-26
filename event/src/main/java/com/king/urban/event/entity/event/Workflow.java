@@ -18,4 +18,12 @@ public class Workflow {
      */
     private String processInstanceId;
 
+    public Workflow(String taskId, String taskName, String processInstanceId) {
+        this.taskId = taskId;
+        this.taskName = taskName;
+        this.processInstanceId = processInstanceId;
+    }
+
+    protected Workflow() {
+    }
 }

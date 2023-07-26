@@ -26,7 +26,7 @@ public class EventCodeRepositoryImpl implements EventCodeRepository {
         if (StrUtil.isEmpty(eventCode)) {
             return initEventCode();
         }
-        if (eventCode.startsWith(getEventCodePrefix())) {
+        if (eventCode.startsWith(getEventCodePrefixFromToday())) {
             return String.valueOf(redisTemplate.opsForValue().increment(RedisKeys.EVENT_CODE, 1));
         } else {
             return initEventCode();
@@ -34,13 +34,13 @@ public class EventCodeRepositoryImpl implements EventCodeRepository {
     }
 
     private String initEventCode() {
-        String eventCodePrefix = getEventCodePrefix();
+        String eventCodePrefix = getEventCodePrefixFromToday();
         String code = eventCodePrefix + StrUtil.fillBefore("1", '0', EVENT_CODE_SUFFIX_LENGTH);
         redisTemplate.opsForValue().set(RedisKeys.EVENT_CODE, code);
         return code;
     }
 
-    private static String getEventCodePrefix() {
+    private static String getEventCodePrefixFromToday() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern(DatePattern.PURE_DATE_PATTERN));
     }
 

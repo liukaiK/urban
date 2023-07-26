@@ -90,4 +90,9 @@ public class Event extends DeletableEntity<Long> {
     public Position getPosition() {
         return position;
     }
+
+    public void updateWorkflow(Workflow workflow) {
+        this.workflow = workflow;
+    }
+
 }
