@@ -11,7 +11,7 @@
 
     <artifactId>urban-job</artifactId>
 
-    <name>job</name>
+    <name>urban-job</name>
     <description>定时任务执行器</description>
 
     <dependencies>

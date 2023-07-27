@@ -12,6 +12,6 @@
     <artifactId>plugin</artifactId>
     <packaging>pom</packaging>
 
-    <name>plugin</name>
+    <name>urban-plugin</name>
 
 </project>
