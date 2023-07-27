@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class SaTokenConfigure implements WebMvcConfigurer {
+public class SaTokenConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -29,6 +29,7 @@ public class SaTokenConfigure implements WebMvcConfigurer {
         config.setIsShare(true);
         config.setTokenStyle("simple-uuid");
         config.setIsLog(false);
+        config.setIsPrint(false);
         return config;
     }
 

@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -29,6 +31,8 @@ public class ReportControllerTest extends BaseTest {
 
 
     @Test
+    @Transactional
+    @Rollback(value = false)
     public void telephoneReportTest() throws Exception {
         TelephoneReportDTO reportDTO = new TelephoneReportDTO();
         reportDTO.setLatitude("111.111");

@@ -59,8 +59,11 @@ public abstract class AbstractReportTemplate {
 
     protected abstract Source getSource();
 
+    /**
+     * 开启工作流
+     */
     private Workflow startProcess(Event event) {
-        String processInstanceId = workflowProcessInstanceService.startProcessInstanceByKey("", String.valueOf(event.getId()));
+        String processInstanceId = workflowProcessInstanceService.startProcessInstanceByKey("event", String.valueOf(event.getId()));
         List<Task> tasks = workflowTaskService.queryTask(processInstanceId);
         if (CollectionUtil.isNotEmpty(tasks) && tasks.size() >= 2) {
             throw new IllegalArgumentException("不对啊 怎么两个task呢");
