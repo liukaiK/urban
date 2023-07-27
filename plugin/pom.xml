@@ -9,9 +9,9 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>plugins</artifactId>
+    <artifactId>plugin</artifactId>
     <packaging>pom</packaging>
 
-    <name>plugins</name>
+    <name>plugin</name>
 
 </project>
