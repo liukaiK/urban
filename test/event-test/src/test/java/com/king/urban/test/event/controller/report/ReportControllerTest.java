@@ -2,7 +2,8 @@ package com.king.urban.test.event.controller.report;
 
 import cn.dev33.satoken.SaManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.king.urban.event.pojo.report.TelephoneReportDTO;
+import com.king.urban.event.service.SimpleTelephoneReport;
+import com.king.urban.event.service.TelephoneReport;
 import com.king.urban.test.event.BaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -34,7 +35,7 @@ public class ReportControllerTest extends BaseTest {
     @Transactional
     @Rollback(value = false)
     public void telephoneReportTest() throws Exception {
-        TelephoneReportDTO reportDTO = new TelephoneReportDTO();
+        TelephoneReport reportDTO = new SimpleTelephoneReport();
         reportDTO.setLatitude("111.111");
         reportDTO.setLongitude("111.111");
 

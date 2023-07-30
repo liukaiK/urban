@@ -2,14 +2,17 @@ package com.king.urban.event.entity.event;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
+import com.king.urban.core.entity.employee.Employee;
 import com.king.urban.grid.entity.CellGrid;
 import com.king.urban.grid.entity.DutyGrid;
+import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
+@Getter
 @Entity
 @DynamicInsert
 @DynamicUpdate
@@ -46,12 +49,31 @@ public class Event extends DeletableEntity<Long> {
 
     private Workflow workflow;
 
+    /**
+     * 是否在草稿状态
+     */
+    private boolean draft;
+
+    @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Employee employee;
+
+    public String employeeName;
+
+
+    /**
+     * 案件发生位置信息
+     */
     private Position position;
 
     protected Event() {
+        this.draft = true;
     }
 
     public Event(Source source) {
+        if (source == Source.GRID_ADMIN) {
+            this.draft = true;
+        }
         this.source = source;
     }
 
@@ -63,35 +85,8 @@ public class Event extends DeletableEntity<Long> {
         this.code = code;
     }
 
-    public Source getSource() {
-        return source;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public DutyGrid getDutyGrid() {
-        return dutyGrid;
-    }
-
-    public CellGrid getCellGrid() {
-        return cellGrid;
-    }
-
-    public String getCellGridName() {
-        return cellGridName;
-    }
-
-    public Workflow getWorkflow() {
-        return workflow;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
     public void updateWorkflow(Workflow workflow) {
+        this.draft = false;
         this.workflow = workflow;
     }
 

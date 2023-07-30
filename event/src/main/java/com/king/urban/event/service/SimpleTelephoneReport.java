@@ -1,6 +1,8 @@
-package com.king.urban.event.pojo.report;
+package com.king.urban.event.service;
 
-public class GridAdminReportDTO implements ReportDTO {
+public class SimpleTelephoneReport implements TelephoneReport {
+
+
     @Override
     public String getEventTypeId() {
         return null;

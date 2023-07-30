@@ -5,9 +5,9 @@ import com.king.urban.event.entity.event.Event;
 import com.king.urban.event.entity.event.Position;
 import com.king.urban.event.entity.event.Source;
 import com.king.urban.event.entity.event.Workflow;
-import com.king.urban.event.pojo.report.ReportDTO;
 import com.king.urban.event.repository.EventRepository;
 import com.king.urban.event.repository.code.EventCodeRepository;
+import com.king.urban.event.service.BasicReport;
 import com.king.urban.workflow.process.WorkflowProcessInstanceService;
 import com.king.urban.workflow.task.WorkflowTaskService;
 import org.flowable.task.api.Task;
@@ -30,7 +30,8 @@ public abstract class AbstractReportTemplate {
     private WorkflowTaskService workflowTaskService;
 
 
-    public final void report(ReportDTO reportDTO) {
+    public final void report(BasicReport reportDTO) {
+
         Source source = getSource();
 
         if (source == null) {
@@ -45,14 +46,19 @@ public abstract class AbstractReportTemplate {
 
         eventRepository.save(event);
 
-        Workflow workflow = startProcess(event);
-
-        event.updateWorkflow(workflow);
-
+        if (isStartWorkflow()) {
+            Workflow workflow = startProcess(event);
+            event.updateWorkflow(workflow);
+        }
 
     }
 
-    private Position getPosition(ReportDTO reportDTO) {
+    /**
+     * 判断是否要启用工作流
+     */
+    public abstract boolean isStartWorkflow();
+
+    private Position getPosition(com.king.urban.event.service.Position reportDTO) {
         return new Position(Double.valueOf(reportDTO.getLongitude()), Double.valueOf(reportDTO.getLatitude()), reportDTO.getAddress());
     }
 

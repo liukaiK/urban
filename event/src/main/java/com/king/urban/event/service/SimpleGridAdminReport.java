@@ -1,13 +1,8 @@
-package com.king.urban.event.pojo.report;
+package com.king.urban.event.service;
 
-import lombok.Data;
+public class SimpleGridAdminReport implements GridAdminReport{
 
-@Data
-public class TelephoneReportDTO implements ReportDTO {
 
-    private String longitude;
-
-    private String latitude;
 
     @Override
     public String getEventTypeId() {
@@ -26,17 +21,16 @@ public class TelephoneReportDTO implements ReportDTO {
 
     @Override
     public String getLongitude() {
-        return longitude;
+        return null;
     }
 
     @Override
     public String getLatitude() {
-        return latitude;
+        return null;
     }
 
     @Override
     public String getAddress() {
         return null;
     }
-
 }

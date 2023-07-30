@@ -14,6 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class TelephoneReportService extends AbstractReportTemplate implements ReportService {
 
     @Override
+    public boolean isStartWorkflow() {
+        return true;
+    }
+
+    @Override
     protected Source getSource() {
         return Source.TELEPHONE;
     }

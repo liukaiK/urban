@@ -14,6 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class GridAdminReportService extends AbstractReportTemplate implements ReportService {
 
 
+    /**
+     * 网格员上报是要进入草稿箱中 先不开启工作流
+     */
+    @Override
+    public boolean isStartWorkflow() {
+        return false;
+    }
+
     @Override
     protected Source getSource() {
         return Source.GRID_ADMIN;
