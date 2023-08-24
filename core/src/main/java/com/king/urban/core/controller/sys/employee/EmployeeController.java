@@ -8,6 +8,8 @@ import com.king.urban.core.pojo.dto.employee.SearchEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.UpdateEmployeeDTO;
 import com.king.urban.core.pojo.vo.employee.EmployeeVO;
 import com.king.urban.core.service.employee.EmployeeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/system/employee")
 public class EmployeeController {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private EmployeeService employeeService;

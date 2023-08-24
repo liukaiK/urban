@@ -1,7 +1,6 @@
 package com.king.urban.event.service;
 
-public class SimpleGridAdminReport implements GridAdminReport{
-
+public class SimpleGridAdminReport implements GridAdminReport {
 
 
     @Override
@@ -33,4 +32,21 @@ public class SimpleGridAdminReport implements GridAdminReport{
     public String getAddress() {
         return null;
     }
+
+    @Override
+    public void setLongitude(String longitude) {
+
+    }
+
+    @Override
+    public void setLatitude(String latitude) {
+
+    }
+
+    @Override
+    public void setAddress(String address) {
+
+    }
+
+
 }

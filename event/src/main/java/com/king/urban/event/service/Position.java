@@ -22,5 +22,10 @@ public interface Position extends Report {
      */
     String getAddress();
 
+    void setLongitude(String longitude);
+
+    void setLatitude(String latitude);
+
+    void setAddress(String address);
 
 }
