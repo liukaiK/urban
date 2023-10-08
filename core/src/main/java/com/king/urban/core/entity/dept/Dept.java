@@ -8,6 +8,8 @@ import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -19,6 +21,7 @@ import java.util.Collection;
  */
 @Getter
 @Entity
+@Audited
 @DynamicInsert
 @DynamicUpdate
 @Where(clause = SysConstants.WHERE_DELETE)
@@ -29,6 +32,7 @@ public class Dept extends DeletableEntity<Long> {
 
     private String name;
 
+    @NotAudited
     @JoinColumn
     @ManyToOne(fetch = FetchType.LAZY)
     private Dept parent;

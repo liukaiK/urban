@@ -3,6 +3,7 @@ package com.king.urban.core.entity.employee;
 
 import com.king.urban.common.util.StringUtils;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -11,6 +12,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Username {
 
+    @Column(length = 50, nullable = false)
     private String username;
 
 

@@ -4,18 +4,16 @@ import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
 import com.king.urban.core.entity.dept.Dept;
 import com.king.urban.core.entity.post.Post;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@DynamicInsert
-@DynamicUpdate
-@Where(clause = SysConstants.WHERE_DELETE)
 @Table(name = "t_sys_employee")
+@org.hibernate.envers.Audited
+@org.hibernate.annotations.DynamicInsert
+@org.hibernate.annotations.DynamicUpdate
+@org.hibernate.annotations.Where(clause = SysConstants.WHERE_DELETE)
 public class Employee extends DeletableEntity<Long> {
 
     public static final Long adminId = 1L;
@@ -42,11 +40,13 @@ public class Employee extends DeletableEntity<Long> {
      */
     @JoinColumn
     @ManyToOne(fetch = FetchType.LAZY)
+    @org.hibernate.envers.NotAudited
     private Dept dept;
 
     /**
      * 一个员工可以有多个岗位
      */
+    @org.hibernate.envers.NotAudited
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "t_sys_employee_post", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
     private Collection<Post> posts;
