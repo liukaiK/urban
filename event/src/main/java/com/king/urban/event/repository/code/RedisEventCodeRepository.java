@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Service
-public class EventCodeRepositoryImpl implements EventCodeRepository {
+public class RedisEventCodeRepository implements EventCodeRepository {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
