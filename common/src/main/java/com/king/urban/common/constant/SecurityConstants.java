@@ -10,8 +10,13 @@ public class SecurityConstants {
      */
     public final static String[] IGNORING_URL = new String[]{
             "/favicon.ico",
-            "/system/init"
+            SecurityConstants.SYSTEM_INIT_URL
     };
+
+    /**
+     * 系统初始化的url
+     */
+    public final static String SYSTEM_INIT_URL = "/system/init";
 
     /**
      * 需要拦截的资源
