@@ -31,6 +31,12 @@ public class Post extends DeletableEntity<Long> {
 
     private String name;
 
+    /**
+     * 岗位描述
+     */
+    @Column
+    private String description;
+
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "t_sys_employee_post", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private Collection<Employee> employees;
@@ -55,6 +61,11 @@ public class Post extends DeletableEntity<Long> {
             throw new IllegalArgumentException("dept not be null");
         }
         this.dept = dept;
+    }
+
+
+    public void updateDescription(String description) {
+        this.description = description;
     }
 
     public void updateMenus(Collection<Menu> menus) {

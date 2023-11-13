@@ -18,6 +18,7 @@ import org.hibernate.stat.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,7 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @Slf4j
@@ -47,7 +49,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Page<EmployeeVO> search(SearchEmployeeDTO searchEmployeeDTO, Pageable pageable) {
-        Specification<Employee> specification = (root, query, criteriaBuilder) -> {
+        Specification<Employee> specification = buildSearchSpecification(searchEmployeeDTO);
+        Page<Employee> queryResult = employeeRepository.findAll(specification, pageable);
+        return employeeConverter.convertPage(queryResult);
+    }
+
+    @Override
+    public Collection<EmployeeVO> search(SearchEmployeeDTO searchEmployeeDTO, Sort sort) {
+        Specification<Employee> specification = buildSearchSpecification(searchEmployeeDTO);
+        List<Employee> employees = employeeRepository.findAll(specification, sort);
+        return employeeConverter.convert(employees);
+    }
+
+    private static Specification<Employee> buildSearchSpecification(SearchEmployeeDTO searchEmployeeDTO) {
+        return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
             root.fetch(Employee_.dept, JoinType.LEFT);
             if (StringUtils.isNotEmpty(searchEmployeeDTO.getName())) {
@@ -56,10 +71,11 @@ public class EmployeeServiceImpl implements EmployeeService {
             if (StringUtils.isNotEmpty(searchEmployeeDTO.getUsername())) {
                 predicates.add(criteriaBuilder.equal(root.get(Employee_.username), new Username(searchEmployeeDTO.getUsername())));
             }
+            if (StringUtils.isNotEmpty(String.valueOf(searchEmployeeDTO.getDeptId()))) {
+                predicates.add(criteriaBuilder.equal(root.get(Employee_.dept), new Dept(searchEmployeeDTO.getDeptId())));
+            }
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
-        Page<Employee> queryResult = employeeRepository.findAll(specification, pageable);
-        return employeeConverter.convertPage(queryResult);
     }
 
     @Override

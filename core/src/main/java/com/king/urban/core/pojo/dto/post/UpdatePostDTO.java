@@ -13,4 +13,6 @@ public class UpdatePostDTO {
 
     private String menuIds;
 
+    private String description;
+
 }

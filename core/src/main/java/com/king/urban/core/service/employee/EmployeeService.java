@@ -8,10 +8,15 @@ import com.king.urban.core.pojo.dto.employee.UpdateEmployeeDTO;
 import com.king.urban.core.pojo.vo.employee.EmployeeVO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+import java.util.Collection;
 
 public interface EmployeeService {
 
     Page<EmployeeVO> search(SearchEmployeeDTO searchEmployeeDTO, Pageable pageable);
+
+    Collection<EmployeeVO> search(SearchEmployeeDTO searchEmployeeDTO, Sort sort);
 
     void create(CreateEmployeeDTO employeeDTO);
 

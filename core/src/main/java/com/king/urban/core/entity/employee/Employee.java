@@ -51,6 +51,13 @@ public class Employee extends DeletableEntity<Long> {
     @JoinTable(name = "t_sys_employee_post", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
     private Collection<Post> posts;
 
+    /**
+     * 创建人
+     */
+    @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Employee createEmployee;
+
     public Employee() {
     }
 

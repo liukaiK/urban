@@ -11,4 +11,6 @@ public class CreatePostDTO {
 
     private String menuIds;
 
+    private String description;
+
 }

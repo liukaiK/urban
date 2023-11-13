@@ -1,5 +1,6 @@
 package com.king.urban.core.pojo.vo.employee;
 
+import cn.hutool.core.date.DatePattern;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.king.urban.core.pojo.vo.post.PostVO;
 import lombok.Data;
@@ -22,10 +23,10 @@ public class EmployeeVO {
 
     private Collection<PostVO> posts;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
     private LocalDateTime createTime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
     private LocalDateTime updateTime;
 
 }

@@ -6,11 +6,13 @@ import com.king.urban.core.entity.dept.Dept;
 import com.king.urban.core.entity.menu.Menu;
 import com.king.urban.core.entity.post.Post;
 import com.king.urban.core.pojo.dto.post.CreatePostDTO;
+import com.king.urban.core.pojo.dto.post.SearchPostDTO;
 import com.king.urban.core.pojo.dto.post.UpdatePostDTO;
 import com.king.urban.core.pojo.vo.post.PostVO;
 import com.king.urban.core.repository.dept.DeptRepository;
 import com.king.urban.core.repository.menu.MenuRepository;
 import com.king.urban.core.repository.post.PostRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional
 public class PostServiceImpl implements PostService {
@@ -37,7 +40,7 @@ public class PostServiceImpl implements PostService {
     private MenuRepository menuRepository;
 
     @Override
-    public Page<PostVO> search(Pageable pageable) {
+    public Page<PostVO> search(SearchPostDTO searchPostDTO, Pageable pageable) {
         Page<Post> page = postRepository.findAll(pageable);
         return postConverter.convertPage(page);
     }
@@ -54,6 +57,7 @@ public class PostServiceImpl implements PostService {
         post.updateDept(dept);
         post.updateName(createPostDTO.getName());
         post.updateMenus(menus);
+        post.updateDescription(createPostDTO.getDescription());
         postRepository.save(post);
     }
 
@@ -70,6 +74,7 @@ public class PostServiceImpl implements PostService {
         post.updateDept(dept);
         post.updateName(updatePostDTO.getName());
         post.updateMenus(menus);
+        post.updateDescription(updatePostDTO.getDescription());
         postRepository.save(post);
     }
 

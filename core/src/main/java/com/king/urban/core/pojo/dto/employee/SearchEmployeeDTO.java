@@ -11,5 +11,7 @@ public class SearchEmployeeDTO {
 
     private String username;
 
+    private Long deptId;
+
 
 }

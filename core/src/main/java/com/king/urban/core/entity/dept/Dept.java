@@ -32,6 +32,9 @@ public class Dept extends DeletableEntity<Long> {
 
     private String name;
 
+    @Convert(converter = Type.Converter.class)
+    private Type type;
+
     @NotAudited
     @JoinColumn
     @ManyToOne(fetch = FetchType.LAZY)
@@ -72,5 +75,8 @@ public class Dept extends DeletableEntity<Long> {
         this.parent = parentDept;
     }
 
+    public void updateType(Type type) {
+        this.type = type;
+    }
 
 }
