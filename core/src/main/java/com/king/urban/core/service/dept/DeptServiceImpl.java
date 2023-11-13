@@ -73,7 +73,7 @@ public class DeptServiceImpl implements DeptService {
         // 查询出要删除的部门
         List<Dept> depts = deptRepository.findAllById(ids);
         for (Dept dept : depts) {
-            if (dept.idSystemDept()) {
+            if (dept.isSystemDept()) {
                 throw new IllegalArgumentException("系统内置部门不可以删除");
             }
             if (dept.hasChildren()) {

@@ -28,8 +28,6 @@ import java.util.Collection;
 @Table(name = "t_sys_dept")
 public class Dept extends DeletableEntity<Long> {
 
-    public final static Long DEFAULT_DEPT_ID = 1L;
-
     private String name;
 
     @Convert(converter = Type.Converter.class)
@@ -43,6 +41,11 @@ public class Dept extends DeletableEntity<Long> {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
     private Collection<Dept> children;
 
+    /**
+     * 系统部门
+     */
+    @Column(nullable = false, columnDefinition = "tinyint unsigned")
+    private Boolean systemDept;
 
     public Dept() {
 
@@ -50,13 +53,6 @@ public class Dept extends DeletableEntity<Long> {
 
     public Dept(Long deptId) {
         this.id = deptId;
-    }
-
-    /**
-     * 判断是否为系统内置默认的部门
-     */
-    public boolean idSystemDept() {
-        return DEFAULT_DEPT_ID.equals(this.id);
     }
 
     public boolean hasParent() {
@@ -77,6 +73,13 @@ public class Dept extends DeletableEntity<Long> {
 
     public void updateType(Type type) {
         this.type = type;
+    }
+
+    /**
+     * 是否为系统部门
+     */
+    public boolean isSystemDept() {
+        return systemDept;
     }
 
 }

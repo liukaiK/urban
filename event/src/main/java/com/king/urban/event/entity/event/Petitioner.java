@@ -2,7 +2,7 @@ package com.king.urban.event.entity.event;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
-import com.king.urban.core.entity.employee.MobilePhone;
+import com.king.urban.core.entity.employee.Telephone;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
@@ -23,7 +23,7 @@ public class Petitioner extends DeletableEntity<Long> {
 
     private String name;
 
-    private MobilePhone mobilePhone;
+    private Telephone mobilePhone;
 
     @JoinColumn
     @OneToOne(fetch = FetchType.LAZY)

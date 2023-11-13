@@ -2,8 +2,10 @@ package com.king.urban.core.entity.employee;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
+import com.king.urban.common.jpa.TelephoneConverter;
 import com.king.urban.core.entity.dept.Dept;
 import com.king.urban.core.entity.post.Post;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -39,11 +41,28 @@ public class Employee extends DeletableEntity<Long> {
     /**
      * 手机号码
      */
-    private MobilePhone mobilePhone;
+    @Getter
+    @Convert(converter = TelephoneConverter.class)
+    private String telMobile;
+
+    /**
+     * 办公室电话号码
+     */
+    @Getter
+    @Convert(converter = TelephoneConverter.class)
+    private String telOffice;
+
+    /**
+     * 家庭电话号码
+     */
+    @Getter
+    @Convert(converter = TelephoneConverter.class)
+    private String telHome;
 
     /**
      * 部门
      */
+    @Getter
     @JoinColumn
     @ManyToOne(fetch = FetchType.LAZY)
     @org.hibernate.envers.NotAudited
@@ -52,6 +71,7 @@ public class Employee extends DeletableEntity<Long> {
     /**
      * 一个员工可以有多个岗位
      */
+    @Getter
     @org.hibernate.envers.NotAudited
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "t_sys_employee_post", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
@@ -83,9 +103,9 @@ public class Employee extends DeletableEntity<Long> {
         this.password = password;
     }
 
-    public void updateMobilePhone(MobilePhone mobilePhone) {
-        this.mobilePhone = mobilePhone;
-    }
+//    public void updateMobilePhone(Telephone mobilePhone) {
+//        this.telMobile = mobilePhone;
+//    }
 
     public void updateDept(Dept dept) {
         this.dept = dept;
@@ -108,18 +128,6 @@ public class Employee extends DeletableEntity<Long> {
 
     public void updatePosts(Collection<Post> posts) {
         this.posts = posts;
-    }
-
-    public MobilePhone getMobilePhone() {
-        return mobilePhone;
-    }
-
-    public Dept getDept() {
-        return dept;
-    }
-
-    public Collection<Post> getPosts() {
-        return posts;
     }
 
     /**

@@ -93,7 +93,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.updateName(new Name(employeeDTO.getName()));
         employee.updateUsername(new Username(username));
         employee.updatePassword(new Password(employeeDTO.getPassword()));
-        employee.updateMobilePhone(new MobilePhone(employeeDTO.getMobilePhone()));
+//        employee.updateMobilePhone(new Telephone(employeeDTO.getMobilePhone()));
         employee.updateDept(new Dept(employeeDTO.getDeptId()));
         employee.updatePosts(postRepository.findAllById(Arrays.asList(Convert.toLongArray(employeeDTO.getPostIds().split(",")))));
         employeeRepository.save(employee);
@@ -104,7 +104,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.findById(updateEmployeeDTO.getId()).ifPresent(employee -> {
             employee.updateName(new Name(updateEmployeeDTO.getName()));
             employee.updateDept(new Dept(updateEmployeeDTO.getDeptId()));
-            employee.updateMobilePhone(new MobilePhone(updateEmployeeDTO.getMobilePhone()));
+//            employee.updateMobilePhone(new Telephone(updateEmployeeDTO.getMobilePhone()));
         });
     }
 

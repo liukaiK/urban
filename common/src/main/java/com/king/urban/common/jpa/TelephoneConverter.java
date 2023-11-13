@@ -5,7 +5,7 @@ import com.king.urban.common.util.StringUtils;
 
 import javax.persistence.AttributeConverter;
 
-public class MobilePhoneConverter implements AttributeConverter<String, String> {
+public class TelephoneConverter implements AttributeConverter<String, String> {
 
     @Override
     public String convertToDatabaseColumn(String attribute) {

@@ -52,6 +52,12 @@ public class Post extends DeletableEntity<Long> {
     @JoinTable(name = "t_sys_post_menu", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "menu_id"))
     private Collection<Menu> menus;
 
+    /**
+     * 系统岗位
+     */
+    @Column(nullable = false, columnDefinition = "tinyint unsigned")
+    private Boolean systemPost;
+
     public void updateName(String name) {
         this.name = name;
     }
@@ -70,6 +76,13 @@ public class Post extends DeletableEntity<Long> {
 
     public void updateMenus(Collection<Menu> menus) {
         this.menus = menus;
+    }
+
+    /**
+     * 是否为系统岗位
+     */
+    public boolean isSystemPost() {
+        return systemPost;
     }
 
 }
