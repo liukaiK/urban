@@ -50,6 +50,12 @@ public class Event extends DeletableEntity<Long> {
     private Workflow workflow;
 
     /**
+     * 疑难案件标识
+     */
+    @Column(nullable = false, columnDefinition = "tinyint unsigned")
+    private Boolean difficult;
+
+    /**
      * 是否在草稿状态
      */
     private boolean draft;
@@ -88,6 +94,13 @@ public class Event extends DeletableEntity<Long> {
     public void updateWorkflow(Workflow workflow) {
         this.draft = false;
         this.workflow = workflow;
+    }
+
+    /**
+     * 是否为疑难案件
+     */
+    public boolean isDifficult() {
+        return difficult;
     }
 
 }
