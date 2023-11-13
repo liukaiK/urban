@@ -31,6 +31,12 @@ public class Employee extends DeletableEntity<Long> {
     private Password password;
 
     /**
+     * 监督员标识
+     */
+    @Column(nullable = false, columnDefinition = "tinyint unsigned")
+    private boolean patrol;
+
+    /**
      * 手机号码
      */
     private MobilePhone mobilePhone;
@@ -114,6 +120,13 @@ public class Employee extends DeletableEntity<Long> {
 
     public Collection<Post> getPosts() {
         return posts;
+    }
+
+    /**
+     * 是否为监督员
+     */
+    public boolean isPatrol() {
+        return patrol;
     }
 
 }
