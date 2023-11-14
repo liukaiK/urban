@@ -33,6 +33,12 @@ public class Employee extends DeletableEntity<Long> {
     private Password password;
 
     /**
+     * 性别
+     */
+    @Column(length = 1)
+    private Character gender;
+
+    /**
      * 监督员标识
      */
     @Column(nullable = false, columnDefinition = "tinyint unsigned")
@@ -85,7 +91,7 @@ public class Employee extends DeletableEntity<Long> {
     private Employee createEmployee;
 
     /**
-     * 系统部门
+     * 系统人员标识
      */
     @Column(nullable = false, columnDefinition = "tinyint unsigned")
     private Boolean systemEmployee;
@@ -141,6 +147,10 @@ public class Employee extends DeletableEntity<Long> {
 
         }
         this.posts = posts;
+    }
+
+    public void updateGender(char gender) {
+        this.gender = gender;
     }
 
     /**

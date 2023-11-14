@@ -54,9 +54,7 @@ public class PostServiceImpl implements PostService {
         Dept dept = deptRepository.findById(createPostDTO.getDeptId())
                 .orElseThrow(() -> new IllegalArgumentException("部门不存在"));
 
-        boolean existsName = postRepository.existsByNameAndDept(createPostDTO.getName(), dept);
-
-        if (existsName) {
+        if (isExistsByNameInDept(createPostDTO.getName(), dept)) {
             throw new IllegalArgumentException(StrFormatter.format("部门({})下，已经存在({})角色", dept.getName(), createPostDTO.getName()));
         }
 
@@ -71,16 +69,20 @@ public class PostServiceImpl implements PostService {
         postRepository.save(post);
     }
 
+    private boolean isExistsByNameInDept(String name, Dept dept) {
+        return postRepository.existsByNameAndDept(name, dept);
+    }
+
     @Override
     public void update(UpdatePostDTO updatePostDTO) {
         Dept dept = deptRepository.findById(updatePostDTO.getDeptId())
                 .orElseThrow(() -> new IllegalArgumentException("部门不存在"));
 
-        Long[] menuIds = Convert.toLongArray(updatePostDTO.getMenuIds());
-        List<Menu> menus = menuRepository.findAllById(Arrays.asList(menuIds));
+        List<Menu> menus = menuRepository.findAllById(Convert.toList(Long.class, updatePostDTO.getMenuIds()));
 
         Post post = postRepository.findById(updatePostDTO.getId())
                 .orElseThrow(() -> new IllegalArgumentException("非法的岗位"));
+
         post.updateDept(dept);
         post.updateName(updatePostDTO.getName());
         post.updateMenus(menus);
