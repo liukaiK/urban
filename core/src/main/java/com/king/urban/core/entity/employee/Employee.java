@@ -167,4 +167,12 @@ public class Employee extends DeletableEntity<Long> {
         return systemEmployee;
     }
 
+    public void updateTelMobile(String telMobile) {
+        this.telMobile = telMobile;
+    }
+
+    public void updateCreateEmployee(Employee createEmployee) {
+        this.createEmployee = createEmployee;
+    }
+
 }

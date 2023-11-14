@@ -11,6 +11,8 @@ public class UpdateEmployeeDTO {
 
     private String username;
 
+    private String gender;
+
     private Long deptId;
 
     private String mobilePhone;

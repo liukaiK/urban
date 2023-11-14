@@ -16,9 +16,15 @@ public class EmployeeServiceTest extends BaseTest {
 
 
     @Test
+    @Transactional
+    @Rollback(value = false)
     public void employeeCreateTest() {
         CreateEmployeeDTO createEmployeeDTO = new CreateEmployeeDTO();
-
+        createEmployeeDTO.setName("超级管理员");
+        createEmployeeDTO.setUsername("admin");
+        createEmployeeDTO.setTelMobile("13384514111");
+        createEmployeeDTO.setPassword("password");
+        createEmployeeDTO.setDeptId(1L);
         employeeService.create(createEmployeeDTO);
     }
 

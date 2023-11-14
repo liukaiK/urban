@@ -11,6 +11,7 @@ import com.king.urban.core.pojo.dto.employee.RemoveEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.SearchEmployeeDTO;
 import com.king.urban.core.pojo.dto.employee.UpdateEmployeeDTO;
 import com.king.urban.core.pojo.vo.employee.EmployeeVO;
+import com.king.urban.core.repository.dept.DeptRepository;
 import com.king.urban.core.repository.employee.EmployeeRepository;
 import com.king.urban.core.repository.post.PostRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +41,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
     @Autowired
+    private DeptRepository deptRepository;
+
+    @Autowired
     private SessionFactory sessionFactory;
 
     @Autowired
@@ -47,20 +51,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeConverter employeeConverter;
-
-    @Override
-    public Page<EmployeeVO> search(SearchEmployeeDTO searchEmployeeDTO, Pageable pageable) {
-        Specification<Employee> specification = buildSearchSpecification(searchEmployeeDTO);
-        Page<Employee> queryResult = employeeRepository.findAll(specification, pageable);
-        return employeeConverter.convertPage(queryResult);
-    }
-
-    @Override
-    public Collection<EmployeeVO> search(SearchEmployeeDTO searchEmployeeDTO, Sort sort) {
-        Specification<Employee> specification = buildSearchSpecification(searchEmployeeDTO);
-        List<Employee> employees = employeeRepository.findAll(specification, sort);
-        return employeeConverter.convert(employees);
-    }
 
     private static Specification<Employee> buildSearchSpecification(SearchEmployeeDTO searchEmployeeDTO) {
         return (root, query, criteriaBuilder) -> {
@@ -80,9 +70,25 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Page<EmployeeVO> search(SearchEmployeeDTO searchEmployeeDTO, Pageable pageable) {
+        Specification<Employee> specification = buildSearchSpecification(searchEmployeeDTO);
+        Page<Employee> queryResult = employeeRepository.findAll(specification, pageable);
+        return employeeConverter.convertPage(queryResult);
+    }
+
+    @Override
+    public Collection<EmployeeVO> search(SearchEmployeeDTO searchEmployeeDTO, Sort sort) {
+        Specification<Employee> specification = buildSearchSpecification(searchEmployeeDTO);
+        List<Employee> employees = employeeRepository.findAll(specification, sort);
+        return employeeConverter.convert(employees);
+    }
+
+    @Override
     public void create(CreateEmployeeDTO employeeDTO) {
         Statistics statistics = sessionFactory.getStatistics();
 
+        Dept dept = deptRepository.findById(employeeDTO.getDeptId())
+                .orElseThrow(() -> new IllegalArgumentException("部门不存在"));
 
         String username = employeeDTO.getUsername();
 
@@ -94,9 +100,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.updateName(new Name(employeeDTO.getName()));
         employee.updateUsername(new Username(username));
         employee.updatePassword(new Password(employeeDTO.getPassword()));
-//        employee.updateMobilePhone(new Telephone(employeeDTO.getMobilePhone()));
-        employee.updateDept(new Dept(employeeDTO.getDeptId()));
-        employee.updatePosts(postRepository.findAllById(Arrays.asList(Convert.toLongArray(employeeDTO.getPostIds().split(",")))));
+        employee.updateTelMobile(employeeDTO.getTelMobile());
+        employee.updateDept(dept);
+//        employee.updateCreateEmployee(new Employee());
+        employee.updatePosts(postRepository.findAllById(Convert.toList(Long.class, employeeDTO.getPostIds())));
         employeeRepository.save(employee);
     }
 
@@ -105,6 +112,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.findById(updateEmployeeDTO.getId()).ifPresent(employee -> {
             employee.updateName(new Name(updateEmployeeDTO.getName()));
             employee.updateDept(new Dept(updateEmployeeDTO.getDeptId()));
+//            employee.updateGender(updateEmployeeDTO.getGender());
 //            employee.updateMobilePhone(new Telephone(updateEmployeeDTO.getMobilePhone()));
         });
     }

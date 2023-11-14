@@ -13,7 +13,17 @@ public class CreateEmployeeDTO {
 
     private Long deptId;
 
-    private String mobilePhone;
+    private String telMobile;
+
+    /**
+     * 办公室电话号码
+     */
+    private String telOffice;
+
+    /**
+     * 家庭电话号码
+     */
+    private String telHome;
 
     /**
      * 岗位id 逗号拼接
