@@ -9,4 +9,6 @@ public class PostVO {
 
     private String name;
 
+    private boolean isSystemPost;
+
 }

@@ -18,4 +18,6 @@ public interface PostRepository extends BaseRepository<Post, Long>, DeletableRep
 
     Collection<Post> findByEmployeesIn(Collection<Employee> employees);
 
+    boolean existsByNameAndDept(String name, Dept dept);
+
 }

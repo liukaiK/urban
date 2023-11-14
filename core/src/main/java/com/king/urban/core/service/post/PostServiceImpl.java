@@ -1,11 +1,14 @@
 package com.king.urban.core.service.post;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.text.StrFormatter;
 import com.king.urban.core.converter.PostConverter;
 import com.king.urban.core.entity.dept.Dept;
+import com.king.urban.core.entity.employee.Employee;
 import com.king.urban.core.entity.menu.Menu;
 import com.king.urban.core.entity.post.Post;
 import com.king.urban.core.pojo.dto.post.CreatePostDTO;
+import com.king.urban.core.pojo.dto.post.RemovePostDTO;
 import com.king.urban.core.pojo.dto.post.SearchPostDTO;
 import com.king.urban.core.pojo.dto.post.UpdatePostDTO;
 import com.king.urban.core.pojo.vo.post.PostVO;
@@ -47,11 +50,18 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void create(CreatePostDTO createPostDTO) {
+
         Dept dept = deptRepository.findById(createPostDTO.getDeptId())
                 .orElseThrow(() -> new IllegalArgumentException("部门不存在"));
 
-        Long[] menuIds = Convert.toLongArray(createPostDTO.getMenuIds());
-        List<Menu> menus = menuRepository.findAllById(Arrays.asList(menuIds));
+        boolean existsName = postRepository.existsByNameAndDept(createPostDTO.getName(), dept);
+
+        if (existsName) {
+            throw new IllegalArgumentException(StrFormatter.format("部门({})下，已经存在({})角色", dept.getName(), createPostDTO.getName()));
+        }
+
+
+        List<Menu> menus = menuRepository.findAllById(Convert.toList(Long.class, createPostDTO.getMenuIds()));
 
         Post post = new Post();
         post.updateDept(dept);
@@ -76,6 +86,17 @@ public class PostServiceImpl implements PostService {
         post.updateMenus(menus);
         post.updateDescription(updatePostDTO.getDescription());
         postRepository.save(post);
+    }
+
+    @Override
+    public void remove(RemovePostDTO removePostDTO) {
+        for (Long postId : Convert.toLongArray(removePostDTO.getIds().split(","))) {
+            if (Employee.adminId.equals(postId)) {
+                throw new IllegalArgumentException("超级管理员不允许删除");
+            }
+        }
+
+        postRepository.softDeleteAllById(Arrays.asList(Convert.toLongArray(removePostDTO.getIds().split(","))));
     }
 
 

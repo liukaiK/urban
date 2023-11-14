@@ -47,6 +47,11 @@ public class ResponseResultBodyAdvice {
         return Result.fail("500", StrFormatter.format("授权已过期 {}", e.getMessage()));
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public Result illegalArgumentException(IllegalArgumentException e) {
+        return Result.fail("500", e.getMessage());
+    }
+
 
 //    @ExceptionHandler(BusinessException.class)
 //    public Object businessException(HttpServletRequest request, BusinessException e) {

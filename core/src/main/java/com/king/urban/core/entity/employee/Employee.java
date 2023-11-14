@@ -84,6 +84,12 @@ public class Employee extends DeletableEntity<Long> {
     @ManyToOne(fetch = FetchType.LAZY)
     private Employee createEmployee;
 
+    /**
+     * 系统部门
+     */
+    @Column(nullable = false, columnDefinition = "tinyint unsigned")
+    private Boolean systemEmployee;
+
     public Employee() {
     }
 
@@ -107,6 +113,10 @@ public class Employee extends DeletableEntity<Long> {
 //        this.telMobile = mobilePhone;
 //    }
 
+    public void updatePatrol(boolean patrol) {
+        this.patrol = patrol;
+    }
+
     public void updateDept(Dept dept) {
         this.dept = dept;
     }
@@ -127,6 +137,9 @@ public class Employee extends DeletableEntity<Long> {
     }
 
     public void updatePosts(Collection<Post> posts) {
+        for (Post post : posts) {
+
+        }
         this.posts = posts;
     }
 
@@ -135,6 +148,13 @@ public class Employee extends DeletableEntity<Long> {
      */
     public boolean isPatrol() {
         return patrol;
+    }
+
+    /**
+     * 是否为系统人员
+     */
+    public boolean isSystemEmployee() {
+        return systemEmployee;
     }
 
 }

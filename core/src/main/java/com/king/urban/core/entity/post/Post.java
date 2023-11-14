@@ -58,6 +58,10 @@ public class Post extends DeletableEntity<Long> {
     @Column(nullable = false, columnDefinition = "tinyint unsigned")
     private Boolean systemPost;
 
+    public Post() {
+        this.systemPost = false;
+    }
+
     public void updateName(String name) {
         this.name = name;
     }

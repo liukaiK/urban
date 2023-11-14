@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -40,11 +42,23 @@ public class WebSessionAuthenticationStrategy implements SessionAuthenticationSt
         Principal principal = (Principal) authentication.getPrincipal();
         Collection<Post> posts = postRepository.findByEmployeesIn(Collections.singletonList(new Employee(principal.getId())));
         Collection<Menu> menus = menuRepository.findByPostsIn(posts);
+
         StpUtil.login(principal.getId(), "web");
-        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PRINCIPAL, principal);
+
+        saveCache(principal, posts, menus);
+    }
+
+    private static void saveCache(Principal principal, Collection<Post> posts, Collection<Menu> menus) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", principal.getId());
+        map.put("name", principal.getName());
+        map.put("username", principal.getUsername());
+        map.put("deptId", principal.getDeptId());
+        map.put("deptName", principal.getDeptName());
+
+        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PRINCIPAL, map);
         StpUtil.getSession().set(SysConstants.SESSION_CURRENT_POST, posts.stream().map(Post::getName).collect(Collectors.toSet()));
         StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PERMISSION, menus.stream().map(Menu::getPermission).collect(Collectors.toSet()));
-//        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_POST, );
     }
 
 }

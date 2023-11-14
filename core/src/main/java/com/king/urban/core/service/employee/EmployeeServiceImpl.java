@@ -1,6 +1,7 @@
 package com.king.urban.core.service.employee;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.ArrayUtil;
 import com.king.urban.common.util.StringUtils;
 import com.king.urban.core.converter.EmployeeConverter;
 import com.king.urban.core.entity.dept.Dept;
@@ -110,13 +111,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void remove(RemoveEmployeeDTO removeEmployeeDTO) {
-        for (Long employeeId : Convert.toLongArray(removeEmployeeDTO.getIds().split(","))) {
-            if (Employee.adminId.equals(employeeId)) {
-                throw new IllegalArgumentException("超级管理员不允许删除");
+        Long[] employeeIds = Convert.toLongArray(removeEmployeeDTO.getIds().split(","));
+        if (ArrayUtil.isNotEmpty(employeeIds)) {
+
+            for (Employee employee : employeeRepository.findAllById(Arrays.asList(employeeIds))) {
+                if (employee.isSystemEmployee()) {
+                    throw new IllegalArgumentException("系统人员不允许删除");
+                }
             }
+
+            employeeRepository.softDeleteAllById(Arrays.asList(employeeIds));
         }
 
-        employeeRepository.softDeleteAllById(Arrays.asList(Convert.toLongArray(removeEmployeeDTO.getIds().split(","))));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.king.urban.core.service.post;
 
 import com.king.urban.core.pojo.dto.post.CreatePostDTO;
+import com.king.urban.core.pojo.dto.post.RemovePostDTO;
 import com.king.urban.core.pojo.dto.post.SearchPostDTO;
 import com.king.urban.core.pojo.dto.post.UpdatePostDTO;
 import com.king.urban.core.pojo.vo.post.PostVO;
@@ -14,5 +15,7 @@ public interface PostService {
     void create(CreatePostDTO createPostDTO);
 
     void update(UpdatePostDTO updatePostDTO);
+
+    void remove(RemovePostDTO removePostDTO);
 
 }

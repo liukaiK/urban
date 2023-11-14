@@ -23,6 +23,8 @@ public class EmployeeVO {
 
     private Collection<PostVO> posts;
 
+    private boolean systemEmployee;
+
     @JsonFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
     private LocalDateTime createTime;
 
