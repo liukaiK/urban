@@ -8,6 +8,7 @@ import com.king.urban.core.entity.post.Post;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 
 @Entity
@@ -26,7 +27,27 @@ public class Employee extends DeletableEntity<Long> {
     private Name name;
 
     /**
-     * 账号
+     * 编号
+     */
+    private String code;
+
+    /**
+     * 生日
+     */
+    private LocalDate birthday;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 地址
+     */
+    private String address;
+
+    /**
+     * 登录账号
      */
     private Username username;
 
