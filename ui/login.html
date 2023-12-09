@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>城市综合管理服务平台</title>
+</head>
+<style>
+
+
+</style>
+<body>
+<h1>城市综合管理服务平台</h1>
+<div>
+    <label for="username">账号：</label>
+    <input type="text" name="username" id="username" value="admin" autocomplete="off">
+
+    <br>
+
+    <label for="password">密码：</label>
+    <input type="text" name="password" id="password" value="admin" autocomplete="off">
+
+    <br>
+
+    <button id="login_btn">登录</button>
+</div>
+
+<div>
+    <label for="token">response：</label><br>
+    <textarea id="token" rows="30" cols="60"></textarea>
+</div>
+
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        document.getElementById("login_btn").onclick = function () {
+            login();
+        };
+    };
+
+    function login() {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let loginData = {
+            "username": username,
+            "password": password,
+        }
+
+        let login_url = 'http://127.0.0.1:8888/login';
+        let login_req = new XMLHttpRequest();
+        login_req.open("POST", login_url);
+        login_req.setRequestHeader('Content-type', 'application/json');
+        login_req.onreadystatechange = function () {
+            if (login_req.readyState === 4 && login_req.status === 200) {
+                document.getElementById("token").value = JSON.stringify(JSON.parse(login_req.responseText), undefined, 2);
+            }
+        };
+
+        login_req.send(JSON.stringify(loginData));
+
+
+    }
+
+</script>
+</html>
