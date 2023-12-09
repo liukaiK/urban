@@ -37,6 +37,30 @@
         };
     };
 
+    function saveTokeInfo(login_req) {
+        let tokenName = JSON.parse(login_req.responseText).data.tokenName;
+        let tokenValue = JSON.parse(login_req.responseText).data.tokenValue;
+        localStorage.setItem(tokenName, tokenValue);
+    }
+
+    function sendRequest(loginData) {
+        let login_url = 'http://127.0.0.1:8888/login';
+        let login_req = new XMLHttpRequest();
+        login_req.open("POST", login_url);
+        login_req.setRequestHeader('Content-type', 'application/json');
+        login_req.onreadystatechange = function () {
+            if (login_req.readyState === 4 && login_req.status === 200) {
+                displayResponseText(login_req.responseText);
+                saveTokeInfo(login_req);
+            }
+        };
+        login_req.send(JSON.stringify(loginData));
+    }
+
+    function displayResponseText(responseText) {
+        document.getElementById("token").value = JSON.stringify(JSON.parse(responseText), undefined, 2);
+    }
+
     function login() {
         let username = document.getElementById("username").value;
         let password = document.getElementById("password").value;
@@ -44,20 +68,7 @@
             "username": username,
             "password": password,
         }
-
-        let login_url = 'http://127.0.0.1:8888/login';
-        let login_req = new XMLHttpRequest();
-        login_req.open("POST", login_url);
-        login_req.setRequestHeader('Content-type', 'application/json');
-        login_req.onreadystatechange = function () {
-            if (login_req.readyState === 4 && login_req.status === 200) {
-                document.getElementById("token").value = JSON.stringify(JSON.parse(login_req.responseText), undefined, 2);
-            }
-        };
-
-        login_req.send(JSON.stringify(loginData));
-
-
+        sendRequest(loginData);
     }
 
 </script>
