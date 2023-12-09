@@ -1,6 +1,7 @@
 package com.king.urban.security.web.principal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.king.urban.core.entity.dept.Dept;
 import com.king.urban.core.entity.employee.Employee;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 
 public class Principal implements UserDetails, Serializable {
@@ -25,6 +27,11 @@ public class Principal implements UserDetails, Serializable {
 
     private Long deptId;
 
+    /**
+     * 子部门的ID
+     */
+    private Collection<Long> childrenDeptIds;
+
     @JsonIgnore
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -38,6 +45,11 @@ public class Principal implements UserDetails, Serializable {
         principal.setName(employee.getName());
         principal.setUsername(employee.getUsername());
         principal.setDeptId(employee.getDept().getId());
+
+        if (employee.getDept().hasChildren()) {
+            principal.setChildrenDeptIds(employee.getDept().getChildren().stream().map(Dept::getId).collect(Collectors.toSet()));
+        }
+
         principal.setDeptName(employee.getDept().getName());
         principal.setPassword(employee.getEncodedPassword());
         return principal;
@@ -127,4 +139,13 @@ public class Principal implements UserDetails, Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setChildrenDeptIds(Collection<Long> childrenDeptIds) {
+        this.childrenDeptIds = childrenDeptIds;
+    }
+
+    public Collection<Long> getChildrenDeptIds() {
+        return childrenDeptIds;
+    }
+
 }

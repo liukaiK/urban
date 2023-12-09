@@ -9,4 +9,6 @@ public class DeptVO {
 
     private String name;
 
+    private Long parentId;
+
 }

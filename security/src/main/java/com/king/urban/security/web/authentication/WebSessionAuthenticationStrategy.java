@@ -53,9 +53,13 @@ public class WebSessionAuthenticationStrategy implements SessionAuthenticationSt
         map.put("id", principal.getId());
         map.put("name", principal.getName());
         map.put("username", principal.getUsername());
-        map.put("deptId", principal.getDeptId());
         map.put("deptName", principal.getDeptName());
+        //TODO 可能不往map里存了 直接存到StpUtil.getSession().set()
+        map.put(SysConstants.SESSION_CURRENT_DEPT_ID, principal.getDeptId());
 
+        map.put(SysConstants.SESSION_CURRENT_DEPT_ID, principal.getDeptId());
+        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_DEPT_ID, principal.getDeptId());
+        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_CHILDREN_DEPT_ID, principal.getChildrenDeptIds());
         StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PRINCIPAL, map);
         StpUtil.getSession().set(SysConstants.SESSION_CURRENT_POST, posts.stream().map(Post::getName).collect(Collectors.toSet()));
         StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PERMISSION, menus.stream().map(Menu::getPermission).collect(Collectors.toSet()));
