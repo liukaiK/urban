@@ -2,10 +2,6 @@ package com.king.urban.event.entity.event;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
-import com.king.urban.core.entity.employee.Telephone;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -15,15 +11,15 @@ import javax.persistence.*;
  * @author liukai
  */
 @Entity
-@DynamicInsert
-@DynamicUpdate
-@Where(clause = SysConstants.WHERE_DELETE)
 @Table(name = "t_eve_petitioner")
+@org.hibernate.annotations.DynamicInsert
+@org.hibernate.annotations.DynamicUpdate
+@org.hibernate.annotations.Where(clause = SysConstants.WHERE_DELETE)
 public class Petitioner extends DeletableEntity<Long> {
 
     private String name;
 
-    private Telephone mobilePhone;
+    private String telMobile;
 
     @JoinColumn
     @OneToOne(fetch = FetchType.LAZY)
