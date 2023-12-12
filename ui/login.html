@@ -4,24 +4,36 @@
     <meta charset="UTF-8">
     <title>城市综合管理服务平台</title>
 </head>
-<style>
+<style type="text/css">
+    body {
+        background-image: url("http://111.42.14.42:8081/img/lginnew.jpg");
+    }
 
+    div {
+        border: 1px;
+    }
 
 </style>
 <body>
-<h1>城市综合管理服务平台</h1>
 <div>
-    <label for="username">账号：</label>
-    <input type="text" name="username" id="username" value="admin" autocomplete="off">
+    <h1>城市综合管理服务平台</h1>
+</div>
+<div>
 
-    <br>
+    <div>
+        <label for="username">账号：</label>
+        <input type="text" name="username" id="username" value="admin" autocomplete="off" autofocus="autofocus">
+    </div>
 
-    <label for="password">密码：</label>
-    <input type="text" name="password" id="password" value="admin" autocomplete="off">
+    <div>
+        <label for="password">密码：</label>
+        <input type="text" name="password" id="password" value="admin" autocomplete="off">
+    </div>
 
-    <br>
+    <div>
+        <button id="login_btn">登录</button>
+    </div>
 
-    <button id="login_btn">登录</button>
 </div>
 
 <div>
@@ -31,9 +43,14 @@
 
 </body>
 <script type="text/javascript">
+
+    import {sum} from './js/login';
+
     window.onload = function () {
+        let sum1 = sum(1, 2);
+        console.debug(sum1);
         document.getElementById("login_btn").onclick = function () {
-            login();
+            // login();
         };
     };
 
@@ -61,15 +78,7 @@
         document.getElementById("token").value = JSON.stringify(JSON.parse(responseText), undefined, 2);
     }
 
-    function login() {
-        let username = document.getElementById("username").value;
-        let password = document.getElementById("password").value;
-        let loginData = {
-            "username": username,
-            "password": password,
-        }
-        sendRequest(loginData);
-    }
+
 
 </script>
 </html>
