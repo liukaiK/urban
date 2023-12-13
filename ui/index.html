@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>城市综合管理服务平台</title>
+</head>
+<body>
+<div>
+    <h1>城市综合管理服务平台</h1>
+</div>
+<div>
+
+    <div>
+        <label for="username">账号：</label>
+        <input type="text" name="username" id="username" value="admin" autocomplete="off" autofocus="autofocus">
+    </div>
+
+    <div>
+        <label for="password">密码：</label>
+        <input type="text" name="password" id="password" value="admin" autocomplete="off">
+    </div>
+
+    <div>
+        <button id="login_btn">登录</button>
+    </div>
+
+</div>
+
+<div>
+    <label for="token">response：</label><br>
+    <textarea id="token" rows="30" cols="60"></textarea>
+</div>
+
+</body>
+<script src="./js/login.js" type="application/javascript"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        document.getElementById("login_btn").onclick = function () {
+            login.login();
+        };
+    };
+</script>
+</html>
