@@ -8,8 +8,9 @@ import com.king.urban.main.event.entity.event.Workflow;
 import com.king.urban.main.event.repository.EventRepository;
 import com.king.urban.main.event.repository.code.EventCodeRepository;
 import com.king.urban.main.event.service.BasicReport;
-import com.king.urban.workflow.process.WorkflowProcessInstanceService;
-import com.king.urban.workflow.task.WorkflowTaskService;
+import com.king.urban.main.security.util.CurrentPrincipalUtil;
+import com.king.urban.main.workflow.process.WorkflowProcessInstanceService;
+import com.king.urban.main.workflow.task.WorkflowTaskService;
 import org.flowable.task.api.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -69,7 +70,9 @@ public abstract class AbstractReportTemplate {
      * 开启工作流
      */
     private Workflow startProcess(Event event) {
-        String processInstanceId = workflowProcessInstanceService.startProcessInstanceByKey("event", String.valueOf(event.getId()));
+        String processInstanceId = workflowProcessInstanceService.startProcessInstanceByKey("event",
+                String.valueOf(event.getId()),
+                String.valueOf(CurrentPrincipalUtil.getCurrentPrincipal().getId()));
         //TODO event模块不应该出现flowable的类
         List<Task> tasks = workflowTaskService.queryTask(processInstanceId);
         if (CollectionUtil.isNotEmpty(tasks) && tasks.size() >= 2) {

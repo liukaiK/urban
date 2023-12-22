@@ -13,13 +13,8 @@
 
     <modules>
         <module>common</module>
-        <module>log</module>
         <module>main</module>
-        <module>workflow</module>
-        <module>grid</module>
-        <module>component</module>
         <module>file</module>
-        <module>gis</module>
         <module>plugin</module>
     </modules>
 
@@ -98,43 +93,13 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>urban-log</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>urban-main</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>urban-workflow</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>urban-grid</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>urban-component</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>urban-file</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>urban-gis</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

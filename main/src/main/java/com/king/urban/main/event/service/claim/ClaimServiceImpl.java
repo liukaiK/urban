@@ -2,7 +2,7 @@ package com.king.urban.main.event.service.claim;
 
 import com.king.urban.main.core.entity.employee.Employee;
 import com.king.urban.main.event.entity.event.Event;
-import com.king.urban.workflow.claim.WorkflowClaimService;
+import com.king.urban.main.workflow.claim.WorkflowClaimService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

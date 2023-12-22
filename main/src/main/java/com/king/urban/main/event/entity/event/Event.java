@@ -2,9 +2,9 @@ package com.king.urban.main.event.entity.event;
 
 import com.king.urban.common.constant.SysConstants;
 import com.king.urban.common.entity.DeletableEntity;
-import com.king.urban.grid.entity.CellGrid;
-import com.king.urban.grid.entity.DutyGrid;
 import com.king.urban.main.core.entity.employee.Employee;
+import com.king.urban.main.grid.entity.CellGrid;
+import com.king.urban.main.grid.entity.DutyGrid;
 import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
