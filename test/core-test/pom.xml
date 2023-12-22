@@ -18,11 +18,6 @@
             <artifactId>urban-main</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>urban-core</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 </project>

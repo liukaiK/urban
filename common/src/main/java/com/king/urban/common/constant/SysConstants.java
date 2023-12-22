@@ -20,6 +20,16 @@ public class SysConstants {
     public static final String SESSION_CURRENT_PRINCIPAL = "principal";
 
     /**
+     * 当前登录人的ID
+     */
+    public static final String SESSION_CURRENT_EMPLOYEE_ID = "id";
+
+    /**
+     * 当前登录人的姓名
+     */
+    public static final String SESSION_CURRENT_EMPLOYEE_NAME = "name";
+
+    /**
      * 存储当前登录人的部门
      */
     public static final String SESSION_CURRENT_DEPT_ID = "deptId";

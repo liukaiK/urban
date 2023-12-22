@@ -1,8 +1,8 @@
 package com.king.urban.test.core.service.employee;
 
-import com.king.urban.core.pojo.dto.employee.CreateEmployeeDTO;
-import com.king.urban.core.pojo.dto.employee.UpdateEmployeeDTO;
-import com.king.urban.core.service.employee.EmployeeService;
+import com.king.urban.main.core.pojo.dto.employee.CreateEmployeeDTO;
+import com.king.urban.main.core.pojo.dto.employee.UpdateEmployeeDTO;
+import com.king.urban.main.core.service.employee.EmployeeService;
 import com.king.urban.test.core.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -16,7 +16,7 @@ spring:
       hibernate:
         format_sql: true
         session_factory:
-          statement_inspector: com.king.urban.core.jpa.JpaStatementInspector
+          statement_inspector: com.king.urban.main.core.jpa.JpaStatementInspector
     hibernate:
       ddl-auto: update
   redis:

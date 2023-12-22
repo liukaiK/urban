@@ -14,17 +14,12 @@
     <modules>
         <module>common</module>
         <module>log</module>
-        <module>core</module>
         <module>main</module>
         <module>workflow</module>
         <module>grid</module>
         <module>component</module>
         <module>file</module>
-        <module>event</module>
         <module>gis</module>
-        <module>test</module>
-        <module>security</module>
-        <module>job</module>
         <module>plugin</module>
     </modules>
 
@@ -109,25 +104,7 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>urban-job</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>urban-test</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>urban-main</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>urban-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -157,19 +134,7 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>urban-event</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>urban-gis</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>urban-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
