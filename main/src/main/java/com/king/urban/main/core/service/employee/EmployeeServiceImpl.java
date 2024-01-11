@@ -1,11 +1,14 @@
 package com.king.urban.main.core.service.employee;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.StrUtil;
 import com.king.urban.common.util.StringUtils;
 import com.king.urban.main.core.converter.EmployeeConverter;
 import com.king.urban.main.core.entity.dept.Dept;
 import com.king.urban.main.core.entity.employee.*;
+import com.king.urban.main.core.entity.post.Post;
 import com.king.urban.main.core.pojo.dto.employee.CreateEmployeeDTO;
 import com.king.urban.main.core.pojo.dto.employee.RemoveEmployeeDTO;
 import com.king.urban.main.core.pojo.dto.employee.SearchEmployeeDTO;
@@ -15,8 +18,8 @@ import com.king.urban.main.core.repository.dept.DeptRepository;
 import com.king.urban.main.core.repository.employee.EmployeeRepository;
 import com.king.urban.main.core.repository.post.PostRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.SessionFactory;
-import org.hibernate.stat.Statistics;
+import org.flowable.engine.IdentityService;
+import org.flowable.idm.api.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,15 +47,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     private DeptRepository deptRepository;
 
     @Autowired
-    private SessionFactory sessionFactory;
+    private PostRepository postRepository;
 
     @Autowired
-    private PostRepository postRepository;
+    private IdentityService identityService;
 
     @Autowired
     private EmployeeConverter employeeConverter;
 
-    private static Specification<Employee> buildSearchSpecification(SearchEmployeeDTO searchEmployeeDTO) {
+    private Specification<Employee> buildSearchSpecification(SearchEmployeeDTO searchEmployeeDTO) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
             root.fetch(Employee_.dept, JoinType.LEFT);
@@ -85,8 +88,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void create(CreateEmployeeDTO employeeDTO) {
-        Statistics statistics = sessionFactory.getStatistics();
-
         Dept dept = deptRepository.findById(employeeDTO.getDeptId())
                 .orElseThrow(() -> new IllegalArgumentException("部门不存在"));
 
@@ -94,7 +95,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         if (existsByUsername(new Username(username))) {
             log.warn("新增账号失败 因为账号:{}已经存在", username);
+            throw new IllegalArgumentException(StrUtil.format("新增账号失败 因为账号：{}已经存在", username));
         }
+
+        List<Post> posts = postRepository.findAllById(Convert.toList(Long.class, employeeDTO.getPostIds()));
+        if (CollectionUtil.isEmpty(posts)) {
+            throw new IllegalArgumentException(StrUtil.format("请设置岗位"));
+        }
+
 
         Employee employee = new Employee();
         employee.updateName(new Name(employeeDTO.getName()));
@@ -103,8 +111,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.updateTelMobile(employeeDTO.getTelMobile());
         employee.updateDept(dept);
 //        employee.updateCreateEmployee(new Employee());
-        employee.updatePosts(postRepository.findAllById(Convert.toList(Long.class, employeeDTO.getPostIds())));
+        employee.updatePosts(posts);
         employeeRepository.save(employee);
+
+        User user = identityService.newUser(String.valueOf(employee.getId()));
+        user.setDisplayName(employee.getName());
+        identityService.saveUser(user);
     }
 
     @Override
