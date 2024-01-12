@@ -1,6 +1,6 @@
 package com.king.urban.main.workflow.controller;
 
-import com.king.urban.main.workflow.service.DeployService;
+import com.king.urban.main.workflow.deploy.DeployService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

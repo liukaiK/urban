@@ -16,6 +16,8 @@ import com.king.urban.main.core.repository.dept.DeptRepository;
 import com.king.urban.main.core.repository.menu.MenuRepository;
 import com.king.urban.main.core.repository.post.PostRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.flowable.engine.IdentityService;
+import org.flowable.idm.api.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,6 +44,9 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private MenuRepository menuRepository;
 
+    @Autowired
+    private IdentityService identityService;
+
     @Override
     public Page<PostVO> search(SearchPostDTO searchPostDTO, Pageable pageable) {
         Page<Post> page = postRepository.findAll(pageable);
@@ -67,6 +72,11 @@ public class PostServiceImpl implements PostService {
         post.updateMenus(menus);
         post.updateDescription(createPostDTO.getDescription());
         postRepository.save(post);
+
+        Group group = identityService.newGroup(Convert.convert(String.class, post.getId()));
+        group.setName(post.getName());
+        identityService.saveGroup(group);
+
     }
 
     private boolean isExistsByNameInDept(String name, Dept dept) {

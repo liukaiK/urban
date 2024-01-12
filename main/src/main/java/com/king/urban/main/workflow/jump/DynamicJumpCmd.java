@@ -5,7 +5,7 @@
  * 若需获取本书的完整案例及代码，请访问人民邮电出版社该书首页进行下载，网址为：https://www.epubit.com/bookDetails?id=UBd189db7e65bd。
  */
 
-package com.king.urban.main.workflow;
+package com.king.urban.main.workflow.jump;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.AllArgsConstructor;

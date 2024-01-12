@@ -48,11 +48,12 @@ public class Dept extends DeletableEntity<Long> {
     private Boolean systemDept;
 
     public Dept() {
-
+        this.systemDept = false;
     }
 
     public Dept(Long deptId) {
         this.id = deptId;
+        this.systemDept = false;
     }
 
     public boolean hasParent() {

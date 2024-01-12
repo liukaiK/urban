@@ -2,6 +2,7 @@ package com.king.urban.main.core.service.dept;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.ObjectUtil;
 import com.king.urban.common.util.StringUtils;
 import com.king.urban.main.core.converter.DeptConverter;
 import com.king.urban.main.core.entity.dept.Dept;
@@ -24,7 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -58,18 +58,19 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
-    public void create(CreateDeptDTO createDeptDTO) {
-        Dept parentDept = deptRepository.findById(createDeptDTO.getParentId())
-                .orElseThrow(() -> new IllegalArgumentException("父部门不存在"));
+    public Dept create(CreateDeptDTO createDeptDTO) {
         Dept dept = new Dept();
-        dept.updateParent(parentDept);
+        if (ObjectUtil.isNotEmpty(createDeptDTO.getParentId())) {
+            Dept parentDept = deptRepository.findById(createDeptDTO.getParentId()).orElseThrow(() -> new IllegalArgumentException("父部门不存在"));
+            dept.updateParent(parentDept);
+        }
         dept.updateName(createDeptDTO.getName());
-        deptRepository.save(dept);
+        return deptRepository.save(dept);
     }
 
     @Override
     public void remove(RemoveDeptDTO removeDeptDTO) {
-        List<Long> ids = Arrays.asList(Convert.toLongArray(removeDeptDTO.getIds().split(",")));
+        List<Long> ids = Convert.toList(Long.class, removeDeptDTO.getIds());
         // 查询出要删除的部门
         List<Dept> depts = deptRepository.findAllById(ids);
         for (Dept dept : depts) {

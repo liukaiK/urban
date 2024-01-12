@@ -10,4 +10,6 @@ public interface DeptRepository extends BaseRepository<Dept, Long>, DeletableRep
 
     Collection<Dept> findBySystemDept(boolean isSystemDept);
 
+    Collection<Dept> findByName(String name);
+
 }

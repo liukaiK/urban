@@ -61,6 +61,7 @@ public class EmployeeServiceTest extends BaseTest {
         String username = RandomUtil.randomString(4);
 
         CreateEmployeeDTO createEmployeeDTO = new CreateEmployeeDTO();
+        createEmployeeDTO.setGender("男");
         createEmployeeDTO.setDeptId(depts.iterator().next().getId());
         createEmployeeDTO.setName(RandomUtil.randomString(2));
         createEmployeeDTO.setUsername(username);
@@ -71,11 +72,7 @@ public class EmployeeServiceTest extends BaseTest {
 
         Employee employee = employeeRepository.getByUsername(new Username(username)).orElseThrow(() -> new IllegalArgumentException(""));
 
-        for (Post post : posts) {
-            if (employee.getPosts().contains(post)) {
-
-            }
-        }
+        Assert.assertNotNull(employee);
 
     }
 }

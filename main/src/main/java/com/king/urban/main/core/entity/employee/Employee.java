@@ -112,16 +112,18 @@ public class Employee extends DeletableEntity<Long> {
     private Employee createEmployee;
 
     /**
-     * 系统人员标识
+     * 是否为系统内置，不可通过页面增加系统内置人员
      */
     @Column(nullable = false, columnDefinition = "tinyint unsigned")
     private Boolean systemEmployee;
 
     public Employee() {
+        this.systemEmployee = false;
     }
 
     public Employee(Long id) {
         this.id = id;
+        this.systemEmployee = false;
     }
 
     public void updateUsername(Username username) {
@@ -196,8 +198,7 @@ public class Employee extends DeletableEntity<Long> {
         this.createEmployee = createEmployee;
     }
 
-    public void updateSystemEmployee(boolean systemEmployee) {
-        this.systemEmployee = systemEmployee;
+    public String getEmail() {
+        return email;
     }
-
 }

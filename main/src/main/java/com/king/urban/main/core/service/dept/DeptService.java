@@ -1,5 +1,6 @@
 package com.king.urban.main.core.service.dept;
 
+import com.king.urban.main.core.entity.dept.Dept;
 import com.king.urban.main.core.pojo.dto.dept.CreateDeptDTO;
 import com.king.urban.main.core.pojo.dto.dept.RemoveDeptDTO;
 import com.king.urban.main.core.pojo.dto.dept.SearchDeptDTO;
@@ -12,7 +13,7 @@ public interface DeptService {
 
     Page<DeptVO> search(SearchDeptDTO searchDeptDTO, Pageable pageable);
 
-    void create(CreateDeptDTO createDeptDTOø);
+    Dept create(CreateDeptDTO createDeptDTOø);
 
     void remove(RemoveDeptDTO removeDeptDTO);
 

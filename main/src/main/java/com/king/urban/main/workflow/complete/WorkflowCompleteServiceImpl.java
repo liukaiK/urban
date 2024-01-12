@@ -1,6 +1,6 @@
 package com.king.urban.main.workflow.complete;
 
-import cn.hutool.core.text.StrFormatter;
+import cn.hutool.core.util.StrUtil;
 import com.king.urban.main.event.entity.event.Event;
 import com.king.urban.main.event.repository.EventRepository;
 import org.flowable.engine.TaskService;
@@ -26,7 +26,7 @@ public class WorkflowCompleteServiceImpl implements WorkflowCompleteService {
     @Override
     public void complete(Long eventId, List<String> userList, String taskId, String buttonId, String comment) {
         Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new IllegalArgumentException(StrFormatter.format("eventId:{}不存在", eventId)));
+                .orElseThrow(() -> new IllegalArgumentException(StrUtil.format("eventId:{}不存在", eventId)));
         taskService.addComment(taskId, event.getWorkflow().getProcessInstanceId(), comment);
         taskService.complete(taskId);
     }

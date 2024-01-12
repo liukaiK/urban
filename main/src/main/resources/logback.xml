@@ -4,7 +4,8 @@
     <!-- 日志存放路径 -->
     <property name="log.path" value="./logs"/>
     <!-- 日志输出格式 -->
-    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Shanghai} %highlight(%5p) --- [%-5t] %cyan(%c{36}) %line: %m%n"/>
+    <property name="log.pattern"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Shanghai} %highlight(%5p) --- [%-5t] %cyan(%c{36}) %line: %m%n"/>
 
     <!-- 控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -75,8 +76,11 @@
 
     <logger name="org.hibernate.sql" level="debug"/>
 
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="debug"/>
+    <logger name="org.flowable.engine" level="debug"/>
 
+    <logger name="org.apache.ibatis.logging" level="debug"/>
+
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="debug"/>
 
 
     <!--系统操作日志-->

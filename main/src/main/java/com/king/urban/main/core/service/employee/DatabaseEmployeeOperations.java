@@ -39,7 +39,7 @@ import java.util.List;
 @Slf4j
 @Service
 @Transactional
-public class EmployeeServiceImpl implements EmployeeService {
+public class DatabaseEmployeeOperations implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -90,13 +90,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee create(CreateEmployeeDTO employeeDTO) {
         Dept dept = deptRepository.findById(employeeDTO.getDeptId())
-                .orElseThrow(() -> new IllegalArgumentException("部门不存在"));
+                .orElseThrow(() -> new IllegalArgumentException(StrUtil.format("非法的部门ID:{}", employeeDTO.getDeptId())));
 
-        String username = employeeDTO.getUsername();
-
-        if (existsByUsername(new Username(username))) {
-            log.warn("新增账号失败 因为账号:{}已经存在", username);
-            throw new IllegalArgumentException(StrUtil.format("新增账号失败 因为账号：{}已经存在", username));
+        if (existsByUsername(new Username(employeeDTO.getUsername()))) {
+            log.warn("新增账号失败 因为账号:{}已经存在", employeeDTO.getUsername());
+            throw new IllegalArgumentException(StrUtil.format("新增账号失败 因为账号：{}已经存在", employeeDTO.getUsername()));
         }
 
         List<Post> posts = postRepository.findAllById(Convert.toList(Long.class, employeeDTO.getPostIds()));
@@ -104,25 +102,33 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new IllegalArgumentException(StrUtil.format("请设置岗位"));
         }
 
-        Employee employee = new Employee();
-        employee.updateName(new Name(employeeDTO.getName()));
-        employee.updateUsername(new Username(username));
-        employee.updatePassword(new Password(employeeDTO.getPassword()));
-        employee.updateTelMobile(employeeDTO.getTelMobile());
-        employee.updateDept(dept);
-        employee.updateCreateEmployee(CurrentPrincipalUtil.getCurrentPrincipal().convertToEmployee());
-        employee.updatePosts(posts);
-        employee.updateSystemEmployee(employeeDTO.isSystem());
-        employeeRepository.save(employee);
+        Employee employee = saveToDatabase(employeeDTO, dept, posts);
 
         synchronizeToWorkflow(employee);
 
         return employee;
     }
 
+    private Employee saveToDatabase(CreateEmployeeDTO employeeDTO, Dept dept, List<Post> posts) {
+        Employee employee = new Employee();
+        employee.updateDept(dept);
+        employee.updatePosts(posts);
+        employee.updateTelMobile(employeeDTO.getTelMobile());
+        employee.updateName(new Name(employeeDTO.getName()));
+        employee.updateGender(Convert.convert(Character.class, employeeDTO.getGender()));
+        employee.updateUsername(new Username(employeeDTO.getUsername()));
+        employee.updatePassword(new Password(employeeDTO.getPassword()));
+        employee.updateCreateEmployee(CurrentPrincipalUtil.getCurrentPrincipal().convertToEmployee());
+        employeeRepository.save(employee);
+        return employee;
+    }
+
     private void synchronizeToWorkflow(Employee employee) {
         User user = identityService.newUser(String.valueOf(employee.getId()));
         user.setDisplayName(employee.getName());
+        user.setFirstName(employee.getName());
+        user.setEmail(employee.getEmail());
+        user.setPassword(employee.getEncodedPassword());
         identityService.saveUser(user);
     }
 
