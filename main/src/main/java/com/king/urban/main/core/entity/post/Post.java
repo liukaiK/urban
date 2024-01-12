@@ -37,8 +37,12 @@ public class Post extends DeletableEntity<Long> {
     @Column
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "t_sys_employee_post", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "t_sys_employee_post",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id")
+    )
     private Collection<Employee> employees;
 
     /**

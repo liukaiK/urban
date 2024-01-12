@@ -14,7 +14,7 @@ spring:
     open-in-view: false
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
         session_factory:
           statement_inspector: com.king.urban.main.core.jpa.JpaStatementInspector
     hibernate:

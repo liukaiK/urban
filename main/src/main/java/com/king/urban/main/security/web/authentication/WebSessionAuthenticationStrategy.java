@@ -48,22 +48,20 @@ public class WebSessionAuthenticationStrategy implements SessionAuthenticationSt
         saveCache(principal, posts, menus);
     }
 
-    private void saveCache(Principal principal, Collection<Post> posts, Collection<Menu> menus) {
-        Map<String, Object> map = new HashMap<>();
-        map.put(SysConstants.SESSION_CURRENT_EMPLOYEE_ID, principal.getId());
-        map.put(SysConstants.SESSION_CURRENT_EMPLOYEE_NAME, principal.getName());
-        map.put("username", principal.getUsername());
-        map.put("deptName", principal.getDeptName());
-        // TODO 可能不往map里存了 直接存到StpUtil.getSession().set()
-        map.put(SysConstants.SESSION_CURRENT_DEPT_ID, principal.getDeptId());
-        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PRINCIPAL, map);
+    public static void saveCache(Principal principal, Collection<Post> posts, Collection<Menu> menus) {
+        Map<String, Object> principalMap = new HashMap<>();
+        principalMap.put(SysConstants.SESSION_CURRENT_EMPLOYEE_ID, principal.getId());
+        principalMap.put(SysConstants.SESSION_CURRENT_EMPLOYEE_NAME, principal.getName());
+        principalMap.put(SysConstants.SESSION_CURRENT_USERNAME, principal.getUsername());
 
+        principalMap.put(SysConstants.SESSION_CURRENT_DEPT_ID, principal.getDeptId());
+        principalMap.put(SysConstants.SESSION_CURRENT_DEPT_NAME, principal.getDeptName());
+        principalMap.put(SysConstants.SESSION_CURRENT_CHILDREN_DEPT_ID, principal.getChildrenDeptIds());
 
-        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_EMPLOYEE_ID, principal.getId());
-        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_DEPT_ID, principal.getDeptId());
-        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_CHILDREN_DEPT_ID, principal.getChildrenDeptIds());
-        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_POST, posts.stream().map(Post::getName).collect(Collectors.toSet()));
-        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PERMISSION, menus.stream().map(Menu::getPermission).collect(Collectors.toSet()));
+        principalMap.put(SysConstants.SESSION_CURRENT_POST, posts.stream().map(Post::getName).collect(Collectors.toSet()));
+        principalMap.put(SysConstants.SESSION_CURRENT_PERMISSION, menus.stream().map(Menu::getPermission).collect(Collectors.toSet()));
+
+        StpUtil.getSession().set(SysConstants.SESSION_CURRENT_PRINCIPAL, principalMap);
     }
 
 }

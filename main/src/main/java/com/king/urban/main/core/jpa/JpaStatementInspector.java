@@ -12,11 +12,9 @@ import net.sf.jsqlparser.expression.Parenthesis;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.conditional.OrExpression;
 import net.sf.jsqlparser.expression.operators.relational.*;
-import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.Statement;
-import net.sf.jsqlparser.statement.Statements;
 import net.sf.jsqlparser.statement.delete.Delete;
 import net.sf.jsqlparser.statement.insert.Insert;
 import net.sf.jsqlparser.statement.select.*;
@@ -56,21 +54,23 @@ public class JpaStatementInspector implements StatementInspector, ServletContain
      */
     @Override
     public String inspect(String sql) {
-        try {
-            /**
-             * 未登录用户，系统用户不做解析
-             */
+//        try {
+        /**
+         * 未登录用户，系统用户不做解析
+         */
 //            CurrentUser current = UserContext.current();
 //            if (UserContext.current() == null || UserContext.current().getAdministrator()) {
 //                return null;
 //            }
-            if (!StpUtil.isLogin()) {
-                return sql;
-            }
 
-            /**
-             * 初始化需要进行解析的组织表,
-             */
+        return sql;
+//            if (!StpUtil.isLogin()) {
+//                return sql;
+//            }
+
+        /**
+         * 初始化需要进行解析的组织表,
+         */
 //            if (orgTables == null) {
 //                synchronized (JpaStatementInspector.class) {
 //                    OrganizationProperties bean = SpringContextUtil.getBean(OrganizationProperties.class);
@@ -82,39 +82,39 @@ public class JpaStatementInspector implements StatementInspector, ServletContain
 //                }
 //            }
 
-            /**
-             * 从当前线程获取登录用户的所属用户组织ID及其子孙组织ID
-             */
+        /**
+         * 从当前线程获取登录用户的所属用户组织ID及其子孙组织ID
+         */
 //            CurrentUser user = UserContext.current();
 //            orgId = user.getOrganizationId();
 //            orgIds = user.getOrganizationIds();
-            deptTables.add("t_sys_employee");
-
-            deptId = getCurrentDeptId();
-            deptIds = getCurrentChildrenDeptId();
-
-            log.info("组织筛选解析开始，原始SQL：{}", sql);
-            Statements statements = CCJSqlParserUtil.parseStatements(sql);
-            StringBuilder sqlStringBuilder = new StringBuilder();
-            int i = 0;
-            for (Statement statement : statements.getStatements()) {
-                if (null != statement) {
-                    if (i++ > 0) {
-                        sqlStringBuilder.append(';');
-                    }
-                    sqlStringBuilder.append(this.processParser(statement));
-                }
-            }
-            String newSql = sqlStringBuilder.toString();
-            log.info("组织筛选解析结束，解析后SQL：{}", newSql);
-            return newSql;
-        } catch (Exception e) {
-            log.error("组织筛选解析失败，解析SQL异常{}", e.getMessage());
-            e.printStackTrace();
-        } finally {
-            deptId = null;
-        }
-        return null;
+//            deptTables.add("t_sys_employee");
+//
+//            deptId = getCurrentDeptId();
+//            deptIds = getCurrentChildrenDeptId();
+//
+//            log.info("组织筛选解析开始，原始SQL：{}", sql);
+//            Statements statements = CCJSqlParserUtil.parseStatements(sql);
+//            StringBuilder sqlStringBuilder = new StringBuilder();
+//            int i = 0;
+//            for (Statement statement : statements.getStatements()) {
+//                if (null != statement) {
+//                    if (i++ > 0) {
+//                        sqlStringBuilder.append(';');
+//                    }
+//                    sqlStringBuilder.append(this.processParser(statement));
+//                }
+//            }
+//            String newSql = sqlStringBuilder.toString();
+//            log.info("组织筛选解析结束，解析后SQL：{}", newSql);
+//            return newSql;
+//        } catch (Exception e) {
+//            log.error("组织筛选解析失败，解析SQL异常{}", e.getMessage());
+//            e.printStackTrace();
+//        } finally {
+//            deptId = null;
+//        }
+//        return null;
     }
 
     protected String processParser(Statement statement) {

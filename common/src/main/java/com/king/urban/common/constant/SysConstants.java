@@ -30,7 +30,17 @@ public class SysConstants {
     public static final String SESSION_CURRENT_EMPLOYEE_NAME = "name";
 
     /**
-     * 存储当前登录人的部门
+     * 当前登录人的账号
+     */
+    public static final String SESSION_CURRENT_USERNAME = "username";
+
+    /**
+     * 存储当前登录人的部门名称
+     */
+    public static final String SESSION_CURRENT_DEPT_NAME = "deptName";
+
+    /**
+     * 存储当前登录人的部门ID
      */
     public static final String SESSION_CURRENT_DEPT_ID = "deptId";
 

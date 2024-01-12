@@ -100,7 +100,7 @@ public class Employee extends DeletableEntity<Long> {
      */
     @Getter
     @org.hibernate.envers.NotAudited
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "t_sys_employee_post", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
     private Collection<Post> posts;
 
@@ -194,6 +194,10 @@ public class Employee extends DeletableEntity<Long> {
 
     public void updateCreateEmployee(Employee createEmployee) {
         this.createEmployee = createEmployee;
+    }
+
+    public void updateSystemEmployee(boolean systemEmployee) {
+        this.systemEmployee = systemEmployee;
     }
 
 }

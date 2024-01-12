@@ -30,4 +30,6 @@ public class CreateEmployeeDTO {
      */
     private String postIds;
 
+    private boolean system;
+
 }

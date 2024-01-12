@@ -17,6 +17,7 @@ import com.king.urban.main.core.pojo.vo.employee.EmployeeVO;
 import com.king.urban.main.core.repository.dept.DeptRepository;
 import com.king.urban.main.core.repository.employee.EmployeeRepository;
 import com.king.urban.main.core.repository.post.PostRepository;
+import com.king.urban.main.security.util.CurrentPrincipalUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.flowable.engine.IdentityService;
 import org.flowable.idm.api.User;
@@ -87,7 +88,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void create(CreateEmployeeDTO employeeDTO) {
+    public Employee create(CreateEmployeeDTO employeeDTO) {
         Dept dept = deptRepository.findById(employeeDTO.getDeptId())
                 .orElseThrow(() -> new IllegalArgumentException("部门不存在"));
 
@@ -103,17 +104,23 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new IllegalArgumentException(StrUtil.format("请设置岗位"));
         }
 
-
         Employee employee = new Employee();
         employee.updateName(new Name(employeeDTO.getName()));
         employee.updateUsername(new Username(username));
         employee.updatePassword(new Password(employeeDTO.getPassword()));
         employee.updateTelMobile(employeeDTO.getTelMobile());
         employee.updateDept(dept);
-//        employee.updateCreateEmployee(new Employee());
+        employee.updateCreateEmployee(CurrentPrincipalUtil.getCurrentPrincipal().convertToEmployee());
         employee.updatePosts(posts);
+        employee.updateSystemEmployee(employeeDTO.isSystem());
         employeeRepository.save(employee);
 
+        synchronizeToWorkflow(employee);
+
+        return employee;
+    }
+
+    private void synchronizeToWorkflow(Employee employee) {
         User user = identityService.newUser(String.valueOf(employee.getId()));
         user.setDisplayName(employee.getName());
         identityService.saveUser(user);

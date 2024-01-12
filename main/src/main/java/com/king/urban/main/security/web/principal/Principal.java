@@ -3,6 +3,7 @@ package com.king.urban.main.security.web.principal;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.king.urban.main.core.entity.dept.Dept;
 import com.king.urban.main.core.entity.employee.Employee;
+import com.king.urban.main.core.entity.employee.Name;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -39,6 +40,19 @@ public class Principal implements UserDetails, Serializable {
 
     }
 
+    @Override
+    public String toString() {
+        return "Principal{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", deptName='" + deptName + '\'' +
+                ", deptId=" + deptId +
+                ", childrenDeptIds=" + childrenDeptIds +
+                ", authorities=" + authorities +
+                '}';
+    }
+
     public static Principal fromEmployee(Employee employee) {
         Principal principal = new Principal();
         principal.setId(employee.getId());
@@ -54,6 +68,13 @@ public class Principal implements UserDetails, Serializable {
         principal.setPassword(employee.getEncodedPassword());
         return principal;
     }
+
+    public Employee convertToEmployee() {
+        Employee employee = new Employee(this.id);
+        employee.updateName(new Name(this.name));
+        return employee;
+    }
+
 
     public Long getId() {
         return id;
