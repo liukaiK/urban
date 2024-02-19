@@ -39,6 +39,7 @@ public class Employee extends DeletableEntity<Long> {
     /**
      * 邮箱
      */
+    @Getter
     private String email;
 
     /**
@@ -56,6 +57,7 @@ public class Employee extends DeletableEntity<Long> {
     /**
      * 性别
      */
+    @Getter
     @Column(length = 1)
     private Character gender;
 
@@ -172,6 +174,10 @@ public class Employee extends DeletableEntity<Long> {
         this.posts = posts;
     }
 
+    public void addPost(Post post) {
+        this.posts.add(post);
+    }
+
     public void updateGender(char gender) {
         this.gender = gender;
     }
@@ -198,7 +204,4 @@ public class Employee extends DeletableEntity<Long> {
         this.createEmployee = createEmployee;
     }
 
-    public String getEmail() {
-        return email;
-    }
 }
