@@ -17,9 +17,11 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>urban-common</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>com.github.tobato</groupId>
-            <artifactId>fastdfs-client</artifactId>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.5.8</version>
         </dependency>
     </dependencies>
 

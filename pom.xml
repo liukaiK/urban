@@ -36,7 +36,6 @@
         <spring.cloud.alibaba.version>2021.0.5.0</spring.cloud.alibaba.version>
         <userAgentUtils.version>1.21</userAgentUtils.version>
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
-        <fastdfs-client.version>1.27.2</fastdfs-client.version>
         <flowable.version>6.8.0</flowable.version>
         <hutool.version>5.8.20</hutool.version>
         <lombok.version>1.18.16</lombok.version>
@@ -116,12 +115,6 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${org.mapstruct.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.tobato</groupId>
-                <artifactId>fastdfs-client</artifactId>
-                <version>${fastdfs-client.version}</version>
             </dependency>
 
             <dependency>
