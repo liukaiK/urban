@@ -42,6 +42,8 @@ public class Event extends DeletableEntity<Long> {
     @ManyToOne(fetch = FetchType.EAGER)
     private CellGrid cellGrid;
 
+    private State state;
+
     /**
      * 冗余字段
      */
@@ -79,6 +81,7 @@ public class Event extends DeletableEntity<Long> {
     public Event(Source source) {
         if (source == Source.GRID_ADMIN) {
             this.draft = true;
+            this.state = new Draft();
         }
         this.source = source;
     }
@@ -94,6 +97,10 @@ public class Event extends DeletableEntity<Long> {
     public void updateWorkflow(Workflow workflow) {
         this.draft = false;
         this.workflow = workflow;
+    }
+
+    public void doAction() {
+        this.state.doAction();
     }
 
     /**
