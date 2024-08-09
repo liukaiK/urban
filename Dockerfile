@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-MAINTAINER zhizhufan@foxmail.com
+LABEL maintainer='zhizhufan@foxmail.com'
 
 COPY main/target/main.jar /app.jar
 
