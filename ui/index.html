@@ -32,12 +32,42 @@
 </div>
 
 </body>
-<script src="./js/login.js" type="application/javascript"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script type="text/javascript">
     window.onload = function () {
         document.getElementById("login_btn").onclick = function () {
             login.login();
         };
     };
+
+
+
+    let opt = {
+        data: function () {
+            return {
+                message: 'Hello vue!',
+                score: 66,
+                count: 0
+            }
+        },
+        methods: {
+            alterMessage: function () {
+                alert('hello');
+            },
+            updateCount: function () {
+                console.log(this);
+                this.count++;
+            }
+        },
+        computed: {
+            sum: function () {
+                if (this.count > 1) {
+                    return '大于1了';
+                }
+                return 1;
+            },
+        }
+    };
+    Vue.createApp(opt).mount('#app');
 </script>
 </html>
