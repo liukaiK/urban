@@ -1,10 +1,10 @@
 package com.king.urban.test.core.service.post;
 
-import com.king.urban.main.core.entity.post.Post;
-import com.king.urban.main.core.pojo.dto.post.CreatePostDTO;
-import com.king.urban.main.core.pojo.dto.post.UpdatePostDTO;
-import com.king.urban.main.core.repository.post.PostRepository;
-import com.king.urban.main.core.service.post.PostService;
+import com.king.urban.core.entity.post.Post;
+import com.king.urban.core.pojo.dto.post.CreatePostDTO;
+import com.king.urban.core.pojo.dto.post.UpdatePostDTO;
+import com.king.urban.core.repository.post.PostRepository;
+import com.king.urban.core.service.post.PostService;
 import com.king.urban.test.core.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.king.urban.test.event;
 
 import cn.dev33.satoken.stp.StpUtil;
-import com.king.urban.main.MainApplication;
+import com.king.urban.MainApplication;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

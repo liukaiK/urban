@@ -1,0 +1,41 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: urban
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/urban?useUnicode=true&autoReconnect=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+    username: root
+    password: Root@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+#    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+        session_factory:
+          statement_inspector: com.king.urban.core.jpa.JpaStatementInspector
+    hibernate:
+      ddl-auto: update
+  data:
+    redis:
+      database: 1
+      host: 127.0.0.1
+      port: 6379
+      password: Redis@123
+  liquibase:
+    enabled: false
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  rabbitmq:
+    addresses: 127.0.0.1
+
+flowable:
+  database-schema-update: create
+  app:
+    deploy-resources: false
+  check-process-definitions: false

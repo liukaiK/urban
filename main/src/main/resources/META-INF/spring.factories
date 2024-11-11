@@ -1,8 +1,0 @@
-org.springframework.boot.BootstrapRegistryInitializer=\
-  com.king.urban.main.event.boot.EventBootstrapRegistryInitializer
-
-org.springframework.context.ApplicationContextInitializer=\
-  com.king.urban.main.event.boot.EventApplicationContextInitializer
-
-org.springframework.context.ApplicationListener=\
-  com.king.urban.main.event.boot.EventApplicationListener

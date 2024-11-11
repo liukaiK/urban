@@ -1,7 +1,7 @@
 package com.king.urban.test.core.service.menu;
 
-import com.king.urban.main.core.pojo.dto.menu.CreateMenuDTO;
-import com.king.urban.main.core.service.menu.MenuService;
+import com.king.urban.core.pojo.dto.menu.CreateMenuDTO;
+import com.king.urban.core.service.menu.MenuService;
 import com.king.urban.test.core.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

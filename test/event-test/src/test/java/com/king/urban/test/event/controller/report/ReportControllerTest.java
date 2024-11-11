@@ -2,7 +2,7 @@ package com.king.urban.test.event.controller.report;
 
 import cn.dev33.satoken.SaManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.king.urban.main.event.service.SimpleGridAdminReport;
+import com.king.urban.event.service.SimpleGridAdminReport;
 import com.king.urban.test.event.BaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
