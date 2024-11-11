@@ -35,7 +35,6 @@ spring:
     addresses: 127.0.0.1
 
 flowable:
-  database-schema-update: create
-  app:
-    deploy-resources: false
+  database-schema-update: create-drop
   check-process-definitions: false
+  database-schema: urban_workflow

@@ -1,5 +1,6 @@
 package main.workflow.claim;
 
+import com.king.urban.workflow.claim.WorkflowClaimService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

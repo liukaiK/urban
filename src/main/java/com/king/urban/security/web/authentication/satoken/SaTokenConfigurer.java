@@ -24,7 +24,7 @@ public class SaTokenConfigurer implements WebMvcConfigurer {
         SaTokenConfig config = new SaTokenConfig();
         config.setTokenName("token");
         config.setTimeout(5 * 12 * 30 * 24 * 60 * 60);
-        config.setActivityTimeout(30 * 24 * 60 * 60);
+        config.setActiveTimeout(30 * 24 * 60 * 60);
         config.setIsConcurrent(true);
         config.setIsShare(true);
         config.setTokenStyle("simple-uuid");

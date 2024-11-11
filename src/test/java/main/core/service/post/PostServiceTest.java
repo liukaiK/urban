@@ -12,8 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class PostServiceTest extends BaseTest {
 
-    @Autowired
-    private PostService postService;
+//    @Autowired
+//    private PostService postService;
 
     @Test
     public void create() {

@@ -15,7 +15,7 @@ import java.util.Collection;
 @Table(name = "t_sys_employee")
 @org.hibernate.annotations.DynamicInsert
 @org.hibernate.annotations.DynamicUpdate
-@org.hibernate.annotations.Where(clause = SysConstants.WHERE_DELETE)
+@org.hibernate.annotations.SQLRestriction(SysConstants.WHERE_DELETE)
 public class Employee extends DeletableEntity<Long> {
 
     public static final Long adminId = 1L;
